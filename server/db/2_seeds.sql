@@ -7,5 +7,5 @@ VALUES
     ('James', 'Medium', 'Art', 7),
     ('Olu', 'Hard', 'General Knowledge', 8),
     ('James', 'Hard', 'Sports', 7),
-    ('Cameron', 'Medium', 'Art', 7),
+    ('Cameron', 'Medium', 'Art', 9),
     ('Calum', 'Hard', 'General Knowledge', 6)

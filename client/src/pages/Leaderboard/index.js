@@ -12,8 +12,9 @@ export const Leaderboard = () => {
     const [ data, setData ] = useState([]);
 
     const deficultis=['Easy','Medium','Hard'];
-    const categories=['Sports','History','General Knowledge','Entertainment','Celeberties','Art'];
+    const categories=['Sports','History','General Knowledge','Entertainment','Celeberties','Art','Politics','Geography'];
 
+    //Mock data
     // const data=[{"id":"1","username":"Bob","category":"General Knowledge","difficulty":"Easy","score":9},
     // {"id":"2","username":"Kelly","category":"General Knowledge","difficulty":"Easy","score":6},
     // {"id":"3","username":"Emma","category":"General Knowledge","difficulty":"Easy","score":7},
