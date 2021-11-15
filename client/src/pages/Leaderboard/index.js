@@ -50,7 +50,7 @@ export const Leaderboard = () => {
                 <div className="custom-select">
                     <label htmlFor="testTopic">Test topic</label>
                     <select name="testTopic" id="testTopic" onChange={(e) => setCategory(e.target.value)}>
-                        {categories.map((d,i) => <option key={i}>{d.category}</option>)}
+                        {categories.map((d,i) => <option key={i}>{d}</option>)}
                     </select>
                     <label htmlFor="difficulty">Difficaulty</label>
                     <select name="difficulty" id="difficulty" onChange={(e)=> setDifficulty(e.target.value)}>
