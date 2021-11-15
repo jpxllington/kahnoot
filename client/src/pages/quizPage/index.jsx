@@ -1,8 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import { Quiz } from "../../components";
 import { Question } from "../../components";
-import { GameTimer } from '../../components/';
-import { AnswerButton } from "../../components"
 export const QuizPage = () => {
 
     const [answers,setAnswers] = useState([])
@@ -26,13 +25,12 @@ export const QuizPage = () => {
             let {data} = await axios.get(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple`)
             setApiData(data.results);
             recievesQuestionData(data.results[0])
-            setTimer(10)
+            
         }
         callAPI()
     },[])
 
-    useEffect(() =>{
-        const authenticate = () => {
+        const authenticate = (chosenAnswer) => {
             console.log(correctAnswer);
             console.log(chosenAnswer);
             if(correctAnswer===chosenAnswer){
@@ -42,35 +40,10 @@ export const QuizPage = () => {
             }
         }
     
-        const handleTimeout = () =>{
-            authenticate()
-    
-        }
+        
 
-    },[chosenAnswer])
-    // const setTimer = () => {
-    //     setInterval(()=>{
-    //         if(chosenAnswer === correctAnswer){
-    //             console.log(chosenAnswer);
-    //             console.log(correctAnswer);
-    //             console.log("correct");
-    //         }
-    //         if(moreQuestions){
-    //             recievesQuestionData(apiData[nextQuestion])
-    //             setTimer()
-    //         }
-    //     },10000)
-    // }
 
-    // useEffect(()=>{
-    //     const countDownTimer = () => {
-    //         setInterval(()=>{
-    //             setTimer(timer-1)
-
-    //         },1000)
-    //     }
-    //     countDownTimer()
-    // },[timer])
+ 
   
 
 
@@ -94,6 +67,10 @@ export const QuizPage = () => {
         return array;
     }
 
+    const timerDone = () => {
+        console.log("next question");
+    }
+
     const recievesQuestionData = (data) =>{
         let question = data.question
         let answers = data.incorrect_answers.map(a=>({answer:a, correct:false}))
@@ -104,21 +81,10 @@ export const QuizPage = () => {
         setCorrectAnswer(data.correct_answer)
     }
 
-    const renderAnswers = () => {
-        return  answers.map((a, i) => <AnswerButton key={i} handleAnswer={handleAnswer} text={a.answer}/>)
-    }
     return(
         <>
-            {/* <Header/> */}
-            {/* <PlayerList/> */}
             <Question question={question}/>
-            <GameTimer  duration={10000} timerDone={()=>handleTimeout()}/>
-            <form>
-                { renderAnswers() }
-                <input type="hidden" value={chosenAnswer} />
-
-            </form>
-
+            <Quiz answers={answers} authenticate={authenticate} timerDone={timerDone}/>
         </>
     )
 }
