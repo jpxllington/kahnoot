@@ -5,8 +5,12 @@ export const QuizPage = () => {
     const [answers,setAnswers] = useState([])
     const [question,setQuestion] = useState("")
     const [apiData, setApiData]= useState([])
-    const handleAnswer = () => {
-        
+    const [chosenAnswer,setChosenAnswer] = useState("")
+
+
+    const handleAnswer = (e) => {
+        console.log(e);
+        setChosenAnswer(e)
     }
 
     useEffect(() =>{
@@ -49,15 +53,19 @@ export const QuizPage = () => {
     }
 
     const renderAnswers = () => {
-        answers.map((a, i) => <AnswerButton key={i} onClick={(e)=>handleAnswer(e)} text={a.answer}/>)
+        answers.map((a, i) => <AnswerButton key={i} onClick={(e)=>handleAnswer(e)} value={a.answer}/>)
     }
     return(
         <>
-            <Header/>
-            <PlayerList/>
-            <Question/>
+        //     <Header/>
+        //     <PlayerList/>
+            <Question question={question}/>
             <CountDownTimer/>
-            { renderAnswers() }
+            <form>
+                { renderAnswers() }
+                <input type="hidden" value={chosenAnswer} />
+
+            </form>
 
         </>
     )
