@@ -49,17 +49,19 @@ export const Leaderboard = () => {
     return (
         <>
             <div>
-                <h1>High Scores!</h1>
+                <h2>High Scores!</h2>
             </div>
             
             <form id="scores">
                 <div className="custom-select">
                     <label htmlFor="testTopic">Test topic</label>
+                    <label htmlFor="difficulty">Difficaulty</label>
+                    <br></br>
                     <select name="testTopic" id="testTopic" onChange={(e) => setCategory(e.target.value)}>
                         <option>Topic</option>
                         {categories.map((d,i) => <option key={i}>{d}</option>)}
                     </select>
-                    <label htmlFor="difficulty">Difficaulty</label>
+                    
                     <select name="difficulty" id="difficulty" onChange={(e)=> setDifficulty(e.target.value)}>
                         <option>Difficulty</option>
                         {deficultis.map( (x) => <option>{x}</option>)})
