@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { HomePage } from './pages/Homepage'
+import * as Pages from './pages/'
 import './style.css';
 
 export const App = () => {
@@ -10,9 +10,11 @@ export const App = () => {
             
             <Switch>
                 <Route exact path="/">
-                    <HomePage />
+                    <Pages.HomePage />
                 </Route>
-                
+                <Route path="/quiz">
+                    <Pages.QuizPage/>
+                </Route>
                 <Route>
                     <h1>Page doesn't exist</h1>
                 </Route>

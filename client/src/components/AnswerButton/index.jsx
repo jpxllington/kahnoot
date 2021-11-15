@@ -1,11 +1,15 @@
 import React from 'react';
 
-export const AnswerButton = ({text}) => {
+export const AnswerButton = ({text, handleAnswer}) => {
+    
+    const handleSubmit = (e) => {
+        handleAnswer(e);
+    }
     return(
         <>
-            <div>
-                <p>{text}</p>
-            </div>
+            <button onClick={(e)=>handleAnswer(e)}>
+                {text}
+            </button>
         </>
     )
 }
