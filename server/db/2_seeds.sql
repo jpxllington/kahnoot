@@ -5,4 +5,7 @@ VALUES
     ('Calum', 'Easy', 'Politics', 4),
     ('Cameron', 'Hard', 'Sports', 3),
     ('James', 'Medium', 'Art', 7),
-    ('Olu', 'Hard', 'General Knowledge', 8)
+    ('Olu', 'Hard', 'General Knowledge', 8),
+    ('James', 'Hard', 'Sports', 7),
+    ('Cameron', 'Medium', 'Art', 7),
+    ('Calum', 'Hard', 'General Knowledge', 6)

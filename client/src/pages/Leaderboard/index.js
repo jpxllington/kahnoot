@@ -6,38 +6,40 @@ import './style.css';
 
 export const Leaderboard = () => {
 
-    const [ category, setCategory ] = useState('');
+    const [ topic, setTopic ] = useState('');
     const [ scores , setScores ] = useState([]);
     const [ difficulty, setDifficulty ] = useState('');
-    // const [ data, setData ] = useState('');
+    const [ data, setData ] = useState([]);
 
     const deficultis=['Easy','Medium','Hard'];
-    const categories=['Sports','History','General Knowledge','Entertainment','Celeberties'];
+    const categories=['Sports','History','General Knowledge','Entertainment','Celeberties','Art'];
 
-    const data=[{"id":"1","username":"Bob","category":"General Knowledge","difficulty":"Easy","score":9},
-    {"id":"2","username":"Kelly","category":"General Knowledge","difficulty":"Easy","score":6},
-    {"id":"3","username":"Emma","category":"General Knowledge","difficulty":"Easy","score":7},
-    {"id":"4","username":"Alex","category":"History","difficulty":"Easy","score":4},
-    {"id":"5","username":"Tom","category":"Sports","difficulty":"Easy","score":10}]
+    // const data=[{"id":"1","username":"Bob","category":"General Knowledge","difficulty":"Easy","score":9},
+    // {"id":"2","username":"Kelly","category":"General Knowledge","difficulty":"Easy","score":6},
+    // {"id":"3","username":"Emma","category":"General Knowledge","difficulty":"Easy","score":7},
+    // {"id":"4","username":"Alex","category":"History","difficulty":"Easy","score":4},
+    // {"id":"5","username":"Tom","category":"Sports","difficulty":"Easy","score":10}]
 
     const history = useHistory();
 
-    //use this to fetch the data from storage
-    // useEffect(async () => {
-    //     try {
-    //         let { data } = await axios.get('url'); //fetch the players data
-    //         setData(data.scores);
-    //     } catch (error) {
-    //         console.log(error.message);
-    //     }
-    // }, []);
+    // use this to fetch the data from storage
+    useEffect(async () => {
+        try {
+            const fetchData   = await axios.get('http://localhost:3000/leaderboard'); //fetch the players data
+            console.log(fetchData.data);
+            setData(fetchData.data);
+        } catch (error) {
+            console.log(error.message);
+        }
+    }, []);
 
 
     useEffect(() => {
         async function getScores(){
             try{
-                const filteredScores = await data.filter(d => d.category == category && d.difficulty == difficulty);
-                filteredScores.sort((x,y) => x.score - y.score);
+                // console.log(data);
+                const filteredScores = await data.filter(d => d.topic == topic && d.difficulty == difficulty);
+                filteredScores.sort(sortScores); //((x,y) => x.score - y.score);
                 setScores(filteredScores);
             } catch(error) {
                 
@@ -45,12 +47,12 @@ export const Leaderboard = () => {
             }
         } 
         getScores();
-    }, [category, difficulty])
+    }, [topic, difficulty])
 
 
-    // const sortScores = (x, y) => {
-    //     return x.score - y.score; //return a sorted data in descending order of score
-    // }
+    const sortScores = (x, y) => {
+        return y.score - x.score; //return a sorted data in descending order of score
+    }
 
     return (
         <>
@@ -63,7 +65,7 @@ export const Leaderboard = () => {
                     <label htmlFor="testTopic">Test topic</label>
                     <label htmlFor="difficulty">Difficaulty</label>
                     <br></br>
-                    <select name="testTopic" id="testTopic" role="selectCategory"  onChange={(e) => setCategory(e.target.value)}>
+                    <select name="testTopic" id="testTopic" role="selectCategory"  onChange={(e) => setTopic(e.target.value)}>
                         <option key={0} >Topic</option>
                         {categories.map((d,i) => <option key={i}> { d } </option>)}
                     </select>
@@ -88,7 +90,7 @@ export const Leaderboard = () => {
                 {scores && 
                     scores.map((x, i ) => <tr key={i}>
                                             <td className="tableInfo">{i+1}</td>
-                                            <td className="tableInfo">{x.username}</td>
+                                            <td className="tableInfo">{x.name}</td>
                                             <td className="tableInfo">{x.score}</td>
                                         </tr>)
                                         }
