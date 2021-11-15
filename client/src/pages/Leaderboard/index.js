@@ -4,11 +4,10 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './style.css';
 
-
 export const Leaderboard = () => {
 
     const [ category, setCategory ] = useState('');
-    const [ scores , setScores ] = useState();
+    const [ scores , setScores ] = useState([]);
     const [ difficulty, setDifficulty ] = useState('');
     // const [ data, setData ] = useState('');
 
@@ -38,9 +37,10 @@ export const Leaderboard = () => {
         async function getScores(){
             try{
                 const filteredScores = await data.filter(d => d.category == category && d.difficulty == difficulty);
-                filteredScores.sort(sortScores);
+                filteredScores.sort((x,y) => x.score - y.score);
                 setScores(filteredScores);
             } catch(error) {
+                
                 console.log(error.message);
             }
         } 
@@ -48,9 +48,9 @@ export const Leaderboard = () => {
     }, [category, difficulty])
 
 
-    const sortScores = (x, y) => {
-        return x.score - y.score; //return a sorted data in descending order of score
-    }
+    // const sortScores = (x, y) => {
+    //     return x.score - y.score; //return a sorted data in descending order of score
+    // }
 
     return (
         <>
@@ -63,19 +63,19 @@ export const Leaderboard = () => {
                     <label htmlFor="testTopic">Test topic</label>
                     <label htmlFor="difficulty">Difficaulty</label>
                     <br></br>
-                    <select name="testTopic" id="testTopic" role="selectCategory" onChange={(e) => setCategory(e.target.value)}>
-                        <option key={0}>Topic</option>
-                        {categories.map((d,i) => <option key={i}>{d}</option>)}
+                    <select name="testTopic" id="testTopic" role="selectCategory"  onChange={(e) => setCategory(e.target.value)}>
+                        <option key={0} >Topic</option>
+                        {categories.map((d,i) => <option key={i}> { d } </option>)}
                     </select>
                     
-                    <select name="difficulty" id="difficulty" onChange={(e)=> setDifficulty(e.target.value)}>
+                    <select name="difficulty" id="difficulty" role="selectDifficulty" onChange={(e)=> setDifficulty(e.target.value)}>
                         <option key={0}>Difficulty</option>
-                        {deficultis.map( (x,i) => <option key={i}>{x}</option>)})
+                        {deficultis.map( (x,i) => <option key={i}> { x } </option>)})
                     </select>
                 </div>
             </form>
 
-            <table id="rankings" className="table">
+            <table id="rankings" className="table" role="display-scores">
 			<thead>
 				<tr>
 					<th className="tableInfo">Rank</th>
