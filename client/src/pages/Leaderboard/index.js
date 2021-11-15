@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-// import axios from 'axios';
+import axios from 'axios';
 import './style.css';
 
 
@@ -33,10 +33,6 @@ export const Leaderboard = () => {
     //     }
     // }, []);
 
-    function sortScores(x, y) {
-        return x.score - y.score; //return a sorted data in descending order of score
-    }
-
 
     useEffect(() => {
         async function getScores(){
@@ -52,6 +48,9 @@ export const Leaderboard = () => {
     }, [category, difficulty])
 
 
+    const sortScores = (x, y) => {
+        return x.score - y.score; //return a sorted data in descending order of score
+    }
 
     return (
         <>
@@ -59,19 +58,19 @@ export const Leaderboard = () => {
                 <h2>Leaderboard</h2>
             </div>
             
-            <form id="scores">
+            <form id="scores" role="form">
                 <div className="custom-select">
                     <label htmlFor="testTopic">Test topic</label>
                     <label htmlFor="difficulty">Difficaulty</label>
                     <br></br>
-                    <select name="testTopic" id="testTopic" onChange={(e) => setCategory(e.target.value)}>
-                        <option>Topic</option>
+                    <select name="testTopic" id="testTopic" role="selectCategory" onChange={(e) => setCategory(e.target.value)}>
+                        <option key={0}>Topic</option>
                         {categories.map((d,i) => <option key={i}>{d}</option>)}
                     </select>
                     
                     <select name="difficulty" id="difficulty" onChange={(e)=> setDifficulty(e.target.value)}>
-                        <option>Difficulty</option>
-                        {deficultis.map( (x) => <option>{x}</option>)})
+                        <option key={0}>Difficulty</option>
+                        {deficultis.map( (x,i) => <option key={i}>{x}</option>)})
                     </select>
                 </div>
             </form>
