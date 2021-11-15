@@ -49,7 +49,7 @@ export const Leaderboard = () => {
     return (
         <>
             <div>
-                <h2>High Scores!</h2>
+                <h2>Leaderboard</h2>
             </div>
             
             <form id="scores">
@@ -72,18 +72,18 @@ export const Leaderboard = () => {
             <table id="rankings" className="table">
 			<thead>
 				<tr>
-					<th>Rank</th>
-					<th>Username</th>
-					<th>Score</th>
+					<th className="tableInfo">Rank</th>
+					<th className="tableInfo">Username</th>
+					<th className="tableInfo">Score</th>
 				</tr>
 			</thead>
 			<tbody>
                 {console.log(scores)}
                 {scores && 
                     scores.map((x, i ) => <tr key={i}>
-                                            <td>{i+1}</td>
-                                            <td>{x.username}</td>
-                                            <td>{x.score}</td>
+                                            <td className="tableInfo">{i+1}</td>
+                                            <td className="tableInfo">{x.username}</td>
+                                            <td className="tableInfo">{x.score}</td>
                                         </tr>)
                                         }
 			</tbody>

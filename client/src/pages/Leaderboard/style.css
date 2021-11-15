@@ -12,11 +12,14 @@ label{
 
 .table{
     margin-top: 40px;
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 25%;
     border-collapse: separate;
-    border-spacing: 100px 0;
+    border-spacing: 150px 0;
 }
+
+td {
+    padding: 10px 0;
+  }
 
 
 
