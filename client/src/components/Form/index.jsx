@@ -12,6 +12,8 @@ export const CreateForm = () => {
     const [ users, setUsers ] = useState([]);
     const [ difficulty, setDifficulty ] = useState('easy');
     const [ amount, setAmount ] = useState(10)
+    const [ categoryList, setCategoryList ] = useState([])
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -25,7 +27,7 @@ export const CreateForm = () => {
                 console.log(newCategoryArray)
                 
                 const categoryList = newCategoryArray.map((content) => content.category)
-                
+                setCategoryList(categoryList)
                 
             } catch (err) {
                 console.warn(err)
@@ -33,14 +35,12 @@ export const CreateForm = () => {
         }
         fetchCategory();
     }, [])
-    
+    console.log(categoryList)
 
     return (
         <form onSubmit={handleSubmit} id='quizParameters'>
             <select value={category} form='quizParameters' name='topic' id='topic' onChange={(e) => setCategory(e.target.value)} >
-                <option value='General Knowledge'>General Knowledge</option>
-                <option value='Science: Mathematics'>Science: Mathematics</option>
-                <option value='Sports'>Sports</option>
+                { categoryList.map((x,i) => <option key={i}>{x}</option>) }
             </select>
             <select value={difficulty} name="difficulty" form="quizParameters" id="difficulty" onChange={(e)=> setDifficulty(e.target.value)}>
                 <option value='easy'>Easy</option>
