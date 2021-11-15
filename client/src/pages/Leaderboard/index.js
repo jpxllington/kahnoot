@@ -9,14 +9,16 @@ export const Leaderboard = () => {
 
     const [ category, setCategory ] = useState('');
     const [ scores , setScores ] = useState();
-    const [ difficulty, setDifficulty ] = useState('')
-    const categories=['Sports','History','General knowledge','Entertainment','Celeberties'];
+    const [ difficulty, setDifficulty ] = useState('');
 
-    const data={"scores": [{"id":"1","username":"Bob","category":"General Knowledge","difficulty":"easy","score":9},
-    {"id":"2","username":"Kelly","category":"General Knowledge","difficulty":"easy","score":6},
-    {"id":"3","username":"Emma","category":"General Knowledge","difficulty":"easy","score":7},
-    {"id":"4","username":"Alex","category":"History","difficulty":"easy","score":4},
-    {"id":"5","username":"Tom","category":"Sports","difficulty":"easy","score":10}]}
+    const deficultis=['Easy','Medium','Hard'];
+    const categories=['Sports','History','General Knowledge','Entertainment','Celeberties'];
+
+    const data={"scores": [{"id":"1","username":"Bob","category":"General Knowledge","difficulty":"Easy","score":9},
+    {"id":"2","username":"Kelly","category":"General Knowledge","difficulty":"Easy","score":6},
+    {"id":"3","username":"Emma","category":"General Knowledge","difficulty":"Easy","score":7},
+    {"id":"4","username":"Alex","category":"History","difficulty":"Easy","score":4},
+    {"id":"5","username":"Tom","category":"Sports","difficulty":"Easy","score":10}]}
 
     const history = useHistory();
 
@@ -26,9 +28,13 @@ export const Leaderboard = () => {
 
 
     useEffect(() => {
-        async function getScores() {
-            try {
-                const filteredScores = await data.filter(d => d.category == category && d.difficulty == difficulty);
+        async function getScores(){
+            try{
+                const playersData=data.scores;
+                console.log(playersData);
+                console.log(category);
+                console.log(difficulty);
+                const filteredScores = await playersData.filter(d => d.category == category && d.difficulty == difficulty);
                 filteredScores.sort(sortScores);
                 setScores(filteredScores);
             } catch(error) {
@@ -50,13 +56,13 @@ export const Leaderboard = () => {
                 <div className="custom-select">
                     <label htmlFor="testTopic">Test topic</label>
                     <select name="testTopic" id="testTopic" onChange={(e) => setCategory(e.target.value)}>
+                        <option>Topic</option>
                         {categories.map((d,i) => <option key={i}>{d}</option>)}
                     </select>
                     <label htmlFor="difficulty">Difficaulty</label>
                     <select name="difficulty" id="difficulty" onChange={(e)=> setDifficulty(e.target.value)}>
-                        <option value="easy">Easy</option>
-                        <option value="medium">Medium</option>
-                        <option value="hard">Hard</option>
+                        <option>Difficulty</option>
+                        {deficultis.map( (x) => <option>{x}</option>)})
                     </select>
                 </div>
             </form>
@@ -70,6 +76,7 @@ export const Leaderboard = () => {
 				</tr>
 			</thead>
 			<tbody>
+                {console.log(scores)}
                 {scores && 
                     scores.map((x, i ) => <tr key={i}>
                                             <td>{i+1}</td>
