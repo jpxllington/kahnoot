@@ -1,10 +1,10 @@
 version: "3.2"
 services:
-  server:
+  api:
     image: node:12.18.4
     working_dir: /code
     ports:
-      - 2096:2096
+      - 3000:3000
     environment:
       - PGUSER=kahnoot
       - PGHOST=db

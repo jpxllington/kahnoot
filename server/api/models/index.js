@@ -13,7 +13,7 @@ class Leaderboard {
         return new Promise (async (resolve, reject) => {
             try {
                 const leaderData = await db.query(`SELECT * FROM leaderboard;`)
-                const leaders = leaderData.rows.map(l => new Leader(l))
+                const leaders = leaderData.rows.map(l => new Leaderboard(l))
                 resolve(leaders);
             } catch (err) {
                 reject("Error retrieving database")
@@ -22,14 +22,30 @@ class Leaderboard {
        
     }
 
-    static create(quizData){
+    // static create(quizData){
+    //     return new Promise (async (resolve, reject) => {
+    //         try {
+    //             const {name, difficulty, topic, score } = quizData;
+    //             let newQuizData = await db.query ( `INSERT INTO leaderboard (name, difficulty, topic, score)
+    //                                                   VALUES ($1, $2, $3, $4)
+    //                                                   RETURNING *;`, [name, difficulty, topic, score]) 
+    //             let result = new Leaderboard (newQuizData.rows[0])
+    //             resolve (result);
+    //         } catch (err) {
+    //             reject('Error creating this entry');
+    //         }
+    //     })
+        
+    // }
+
+    static create(name, difficulty, topic, score){
+        console.log(name, difficulty)
         return new Promise (async (resolve, reject) => {
             try {
-                const {name, topic, difficulty, score } = quizData;
-                const newQuizData = await db.query ( `INSERT INTO leaderboard (name, topic, difficulty, score)
+                let leaderboardData = await db.query ( `INSERT INTO leaderboard (name, difficulty, topic, score)
                                                       VALUES ($1, $2, $3, $4)
-                                                      RETURNING id;`, [name, topic, difficulty, score]) 
-                const result = new Leaderboard (newQuizData.rows[0])
+                                                      RETURNING *;`, [name, difficulty, topic, score]) 
+                let result = new Leaderboard (leaderboardData.rows[0])
                 resolve (result);
             } catch (err) {
                 reject('Error creating this entry');
