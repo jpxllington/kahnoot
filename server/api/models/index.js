@@ -39,7 +39,6 @@ class Leaderboard {
     // }
 
     static create(name, difficulty, topic, score){
-        console.log(name, difficulty)
         return new Promise (async (resolve, reject) => {
             try {
                 let leaderboardData = await db.query ( `INSERT INTO leaderboard (name, difficulty, topic, score)
