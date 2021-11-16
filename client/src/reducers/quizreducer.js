@@ -2,6 +2,7 @@ const init = {
     apiData: [],
     correctAnswer: "",
     currentAnswer: "",
+    finalAnswers: [],
     currentQ: 0,
     score: 0
 }
@@ -12,6 +13,7 @@ export const quizReducer = (state = init, action) => {
             return {
                 ...state,
                 apiData: action.payload,
+                finalAnswers: [],
                 currentQ: 0,
                 score: 0
             };
@@ -29,11 +31,13 @@ export const quizReducer = (state = init, action) => {
             return {
                 ...state,
                 currentQ: state.currentQ + 1,
+                finalAnswers: [...state.finalAnswers, state.currentAnswer],
                 score: (!!state.currentAnswer && state.currentAnswer === state.correctAnswer) ? state.score + 1 : state.score
             };
         case "END_QUIZ":
             return {
                 ...state,
+                finalAnswers: [...state.finalAnswers, state.currentAnswer],
                 score: (!!state.currentAnswer && state.currentAnswer === state.correctAnswer) ? state.score + 1 : state.score
             };
         default:
