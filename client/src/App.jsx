@@ -7,13 +7,16 @@ import './style.css';
 export const App = () => {
     return (
         <>
-            
+
             <Switch>
                 <Route exact path="/">
                     <Pages.HomePage />
                 </Route>
                 <Route path="/quiz">
-                    <Pages.QuizPage/>
+                    <Pages.QuizPage />
+                </Route>
+                <Route path="/results">
+                    <Pages.Results />
                 </Route>
                 <Route>
                     <h1>Page doesn't exist</h1>
