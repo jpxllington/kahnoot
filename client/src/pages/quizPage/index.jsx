@@ -66,6 +66,8 @@ export const QuizPage = () => {
 
     return (
         <>
+            {/* <Header/> */}
+            {/* <PlayerList/> */}
             <Question question={question} />
             <Quiz answers={answers} authenticate={authenticate} timerDone={timerDone} />
         </>
