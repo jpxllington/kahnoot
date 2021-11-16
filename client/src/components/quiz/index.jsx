@@ -33,20 +33,12 @@ export const Quiz = ({ answers, authenticate, timerDone }) => {
     //     callAPI()
     // },[])
 
-    useEffect(() => {
-        // const authenticate = () => {
-        //     console.log(correctAnswer);
-        //     console.log(chosenAnswer);
-        //     if(correctAnswer===chosenAnswer){
-        //         console.log("answer authenticated");
-        //     } else{
-        //         console.log("wrong");
-        //     }
-        // }
 
+    useEffect(() =>{
+        
         authenticate(chosenAnswer);
+    },[chosenAnswer])
 
-    }, [chosenAnswer])
 
     // const setTimer = () => {
     // const handleTimeout = (e) =>{
@@ -76,7 +68,6 @@ export const Quiz = ({ answers, authenticate, timerDone }) => {
     //     }
     //     countDownTimer()
     // },[timer])
-
 
 
     // setTimer()
