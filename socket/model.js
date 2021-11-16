@@ -48,7 +48,7 @@ export class Game{
         try{
             let player = room.players.find(player => player.username ===username)
             player.score = score;
-            return room.players
+            return room.players;
         } catch(err){
             console.warn(err);
         }
