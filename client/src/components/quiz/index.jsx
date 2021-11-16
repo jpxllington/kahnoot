@@ -1,20 +1,20 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Question } from "../../components";
 import { GameTimer } from '../../components/';
 import { AnswerButton } from "../../components"
 
 
-export const Quiz = ({answers, authenticate, timerDone}) => {
+export const Quiz = ({ answers, authenticate, timerDone }) => {
 
     // const [answers,setAnswers] = useState([])
-    const [question,setQuestion] = useState("")
+    const [question, setQuestion] = useState("")
     // const [apiData, setApiData]= useState([])
-    const [chosenAnswer,setChosenAnswer] = useState("")
-    const [correctAnswer,setCorrectAnswer] = useState("")
-    const [timer,setTimer] = useState();
+    const [chosenAnswer, setChosenAnswer] = useState("")
+    const [correctAnswer, setCorrectAnswer] = useState("")
+    const [timer, setTimer] = useState();
 
-    const handleAnswer = async(e) => {
+    const handleAnswer = async (e) => {
         e.preventDefault()
         console.log(e.target.textContent);
         setChosenAnswer(e.target.textContent);
@@ -33,17 +33,19 @@ export const Quiz = ({answers, authenticate, timerDone}) => {
     //     callAPI()
     // },[])
 
+
     useEffect(() =>{
         
         authenticate(chosenAnswer);
     },[chosenAnswer])
 
+
     // const setTimer = () => {
-        // const handleTimeout = (e) =>{
-        //     console.log(e);
-        //     setChosenAnswer(e)
-    
-        // }
+    // const handleTimeout = (e) =>{
+    //     console.log(e);
+    //     setChosenAnswer(e)
+
+    // }
     //     setInterval(()=>{
     //         if(chosenAnswer === correctAnswer){
     //             console.log(chosenAnswer);
@@ -66,26 +68,25 @@ export const Quiz = ({answers, authenticate, timerDone}) => {
     //     }
     //     countDownTimer()
     // },[timer])
-  
-    
+
 
     // setTimer()
 
     // function shuffle(array) {
     //     let currentIndex = array.length,  randomIndex;
-      
+
     //     // While there remain elements to shuffle...
     //     while (currentIndex != 0) {
-      
+
     //       // Pick a remaining element...
     //       randomIndex = Math.floor(Math.random() * currentIndex);
     //       currentIndex--;
-      
+
     //       // And swap it with the current element.
     //       [array[currentIndex], array[randomIndex]] = [
     //         array[randomIndex], array[currentIndex]];
     //     }
-      
+
     //     return array;
     // }
 
@@ -100,16 +101,16 @@ export const Quiz = ({answers, authenticate, timerDone}) => {
     // }
 
     const renderAnswers = () => {
-        return  answers.map((a, i) => <AnswerButton key={i} handleAnswer={handleAnswer} text={a.answer}/>)
+        return answers.map((a, i) => <AnswerButton key={i} handleAnswer={handleAnswer} text={a.answer} />)
     }
-    return(
+    return (
         <>
             {/* <Header/> */}
             {/* <PlayerList/> */}
-            
-            <GameTimer  duration={10000} timerDone={timerDone}/>
+
+            <GameTimer duration={10000} timerDone={timerDone} />
             <form>
-                { renderAnswers() }
+                {renderAnswers()}
                 <input type="hidden" value={chosenAnswer} />
 
             </form>
