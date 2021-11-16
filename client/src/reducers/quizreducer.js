@@ -1,5 +1,6 @@
 const init = {
-    apiData: []
+    apiData: [],
+    currentQ: 0
 }
 
 export const quizReducer = (state = init, action) => {
@@ -9,6 +10,11 @@ export const quizReducer = (state = init, action) => {
                 ...state,
                 apiData: action.payload
             };
+        case "CHANGE_QUESTION":
+            return {
+                ...state,
+                currentQ: state.currentQ + 1
+            }
         default:
             return state;
     }
