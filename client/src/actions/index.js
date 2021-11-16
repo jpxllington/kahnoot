@@ -3,7 +3,7 @@ import axios from "axios";
 export const fetchQuiz = (amount, category, difficulty) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple&encode=url3986`);
+            const { data } = await axios.get(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple`);
 
             dispatch({
                 type: "STORE_QUESTIONS",

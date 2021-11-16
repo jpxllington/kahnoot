@@ -15,6 +15,12 @@ export const App = () => {
                 <Route path="/quiz">
                     <Pages.QuizPage/>
                 </Route>
+                <Route path="/create">
+                    <Pages.CreateQuiz/>
+                </Route>
+                <Route path="/lobby">
+                    <Pages.Lobby/>
+                </Route>
                 <Route>
                     <h1>Page doesn't exist</h1>
                 </Route>
