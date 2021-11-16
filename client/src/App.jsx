@@ -15,6 +15,9 @@ export const App = () => {
                 <Route path="/quiz">
                     <Pages.QuizPage/>
                 </Route>
+                <Route path="/leaderboard">
+                    <Pages.Leaderboard/>
+                </Route>
                 <Route>
                     <h1>Page doesn't exist</h1>
                 </Route>
