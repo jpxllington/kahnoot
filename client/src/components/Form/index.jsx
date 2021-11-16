@@ -1,12 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-// import NumericInput from 'react-numeric-input'
 // import './style.css'
 import axios from 'axios';
 import { fetchQuiz } from '../../actions';
-
 
 export const CreateForm = () => {
 
@@ -25,14 +23,6 @@ export const CreateForm = () => {
         e.preventDefault();
         await dispatch(fetchQuiz(amount, category, difficulty))
         history.push('/quiz')
-
-        // try {
-        //     const {data} = await axios.get(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple&encode=url3986`)
-        //     console.log(data)
-        //     // history.push('/lobby')
-        // } catch (error) {
-        //     console.warn(error);
-        // }
     }
 
     useEffect(() => {
@@ -42,15 +32,9 @@ export const CreateForm = () => {
                 let newCategoryArray = data.trivia_categories.map((data) => ({ id: data.id, category: data.name }))
                 console.log(newCategoryArray)
 
-
-
                 setCategoryList(newCategoryArray)
 
-
-
                 const categoryList = newCategoryArray.map((content) => content.category)
-
-
 
             } catch (err) {
                 console.warn(err)
