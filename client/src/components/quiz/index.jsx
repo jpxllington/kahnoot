@@ -12,8 +12,8 @@ export const Quiz = ({ answers, authenticate, timerDone }) => {
         setChosenAnswer(e.target.textContent);
     }
 
-    useEffect(() => {
-        authenticate(chosenAnswer);
+    useEffect(async () => {
+        await authenticate(chosenAnswer);
     }, [chosenAnswer])
 
     const renderAnswers = () => {
@@ -21,13 +21,12 @@ export const Quiz = ({ answers, authenticate, timerDone }) => {
     }
     return (
         <>
-            <GameTimer duration={10000} timerDone={timerDone} />
+            <GameTimer duration={8000} timerDone={timerDone} />
             <form>
                 {renderAnswers()}
                 <input type="hidden" value={chosenAnswer} />
 
             </form>
-
         </>
     )
 }
