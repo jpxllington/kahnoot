@@ -18,3 +18,9 @@ export const fetchQuiz = (amount, category, difficulty) => {
         }
     };
 };
+
+export const changeQ = () => ({ type: "CHANGE_QUESTION" })
+export const endQuiz = () => ({ type: "END_QUIZ" })
+
+export const setCorrect = (answer) => ({ type: "SET_CORRECT_ANSWER", payload: answer })
+export const setCurrent = (answer) => ({ type: "SET_CURRENT_ANSWER", payload: answer })
