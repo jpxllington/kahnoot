@@ -67,8 +67,18 @@ export const QuizPage = () => {
         return array;
     }
 
-    const timerDone = () => {
+    const timerDone = (chosenAnswer) => {
         console.log("next question");
+        // const authenticate = (chosenAnswer) => {
+        //     console.log(correctAnswer);
+        //     console.log(chosenAnswer);
+        //     if(correctAnswer===chosenAnswer){
+        //         console.log("answer authenticated");
+        //     } else{
+        //         console.log("wrong");
+        //     }
+        // }
+        // authenticate(chosenAnswer)
     }
 
     const recievesQuestionData = (data) =>{
