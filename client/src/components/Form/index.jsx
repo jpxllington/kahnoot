@@ -10,7 +10,6 @@ export const CreateForm = () => {
 
 
     const [category, setCategory] = useState(9)
-    const [user, setUser] = useState('Pingu');
     const [difficulty, setDifficulty] = useState('easy');
     const [amount, setAmount] = useState(10)
     const [categoryList, setCategoryList] = useState([])
@@ -22,7 +21,7 @@ export const CreateForm = () => {
     const handleGenQuiz = async (e) => {
         e.preventDefault();
         await dispatch(fetchQuiz(amount, category, difficulty))
-        history.push('/quiz')
+        history.push('/lobby')
     }
 
     useEffect(() => {
@@ -55,9 +54,6 @@ export const CreateForm = () => {
                 <option value='medium'>Medium</option>
                 <option value='hard'>Hard</option>
             </select>
-
-            {/* <input type='text' id='username' name='username' value={user} onChange={(e) => setUser(e.target.value)}/>
-            <button onClick={() => setUser()}>Add User</button> */}
             <input type="number" id="amount" name="amount" min="5" max="25" value={amount} onChange={(e) => setAmount(e.target.value)} />
             <input type='submit' value="Generate Quiz" />
 
