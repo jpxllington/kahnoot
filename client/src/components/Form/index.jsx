@@ -30,11 +30,8 @@ export const CreateForm = () => {
             try {
                 const { data } = await axios.get('https://opentdb.com/api_category.php')
                 let newCategoryArray = data.trivia_categories.map((data) => ({ id: data.id, category: data.name }))
-                console.log(newCategoryArray)
 
                 setCategoryList(newCategoryArray)
-
-                const categoryList = newCategoryArray.map((content) => content.category)
 
             } catch (err) {
                 console.warn(err)
@@ -43,7 +40,6 @@ export const CreateForm = () => {
         fetchCategory();
 
     }, [category])
-    console.log(user)
 
 
 
