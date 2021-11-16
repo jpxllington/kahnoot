@@ -1,0 +1,25 @@
+h2{
+    text-align: center;
+}
+
+#scores{
+    text-align: center;
+}
+
+label{
+    margin: 40px;
+}
+
+.table{
+    margin-top: 40px;
+    margin-left: 25%;
+    border-collapse: separate;
+    border-spacing: 150px 0;
+}
+
+td {
+    padding: 10px 0;
+  }
+
+
+
