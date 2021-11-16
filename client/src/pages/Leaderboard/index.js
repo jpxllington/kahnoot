@@ -79,24 +79,23 @@ export const Leaderboard = () => {
             </form>
 
             <table id="rankings" className="table" role="display-scores">
-			<thead>
-				<tr>
-					<th className="tableInfo">Rank</th>
-					<th className="tableInfo">Username</th>
-					<th className="tableInfo">Score</th>
-				</tr>
-			</thead>
-			<tbody>
-                {console.log(scores)}
-                {scores && 
-                    scores.map((x, i ) => <tr key={i}>
-                                            <td className="tableInfo">{i+1}</td>
-                                            <td className="tableInfo">{x.name}</td>
-                                            <td className="tableInfo">{x.score}</td>
-                                        </tr>)
+                <thead>
+                    <tr>
+                        <th className="tableInfo">Rank</th>
+                        <th className="tableInfo">Username</th>
+                        <th className="tableInfo">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {console.log(scores)}
+                    {scores &&  scores.map((x, i ) => <tr key={i}>
+                                                <td className="tableInfo">{i+1}</td>
+                                                <td className="tableInfo">{x.name}</td>
+                                                <td className="tableInfo">{x.score}</td>
+                                            </tr>)
                                         }
-			</tbody>
-		</table>
+                </tbody>
+		    </table>
 
         </>
     )
