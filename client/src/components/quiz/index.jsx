@@ -34,10 +34,9 @@ export const Quiz = ({ answers, authenticate, timerDone }) => {
     // },[])
 
 
-    useEffect(() =>{
-        
+    useEffect(() => {
         authenticate(chosenAnswer);
-    },[chosenAnswer])
+    }, [chosenAnswer])
 
 
     // const setTimer = () => {

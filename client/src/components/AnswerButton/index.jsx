@@ -1,11 +1,11 @@
 import React from 'react';
 
-export const AnswerButton = ({text, handleAnswer}) => {
-    
-    
-    return(
+export const AnswerButton = ({ text, handleAnswer }) => {
+
+
+    return (
         <>
-            <button onClick={(e)=>handleAnswer(e)}>
+            <button onClick={(e) => handleAnswer(e)}>
                 {text}
             </button>
         </>
