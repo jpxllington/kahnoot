@@ -3,7 +3,7 @@ import axios from "axios";
 export const fetchQuiz = (amount, category, difficulty) => {
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple&encode=url3986`);
+            const { data } = await axios.get(`https://opentdb.com/api.php?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple`);
 
             dispatch({
                 type: "STORE_QUESTIONS",
@@ -18,3 +18,9 @@ export const fetchQuiz = (amount, category, difficulty) => {
         }
     };
 };
+
+export const changeQ = () => ({ type: "CHANGE_QUESTION" })
+export const endQuiz = () => ({ type: "END_QUIZ" })
+
+export const setCorrect = (answer) => ({ type: "SET_CORRECT_ANSWER", payload: answer })
+export const setCurrent = (answer) => ({ type: "SET_CURRENT_ANSWER", payload: answer })

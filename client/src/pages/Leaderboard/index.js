@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './style.css';
@@ -13,15 +12,6 @@ export const Leaderboard = () => {
 
     const deficultis=['Easy','Medium','Hard'];
     const categories=['Sports','History','General Knowledge','Entertainment','Celeberties','Art','Politics','Geography'];
-
-    //Mock data
-    // const data=[{"id":"1","username":"Bob","category":"General Knowledge","difficulty":"Easy","score":9},
-    // {"id":"2","username":"Kelly","category":"General Knowledge","difficulty":"Easy","score":6},
-    // {"id":"3","username":"Emma","category":"General Knowledge","difficulty":"Easy","score":7},
-    // {"id":"4","username":"Alex","category":"History","difficulty":"Easy","score":4},
-    // {"id":"5","username":"Tom","category":"Sports","difficulty":"Easy","score":10}]
-
-    const history = useHistory();
 
     // use this to fetch the data from storage
     useEffect(async () => {
@@ -99,7 +89,6 @@ export const Leaderboard = () => {
 
         </>
     )
-
    
 }
 
