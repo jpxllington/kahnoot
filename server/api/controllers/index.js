@@ -11,7 +11,7 @@ async function index(req, res) {
 
 async function show(req, res) {
     try {
-        const leaderboard = await Leaderboard.findById(req.params.id);
+        const leaderboard = await Leaderboard.findByName(req.params.name);
         res.status(200).json(leaderboard)
     } catch (err) {
         res.status(404).json({err})
@@ -20,7 +20,7 @@ async function show(req, res) {
 
 async function create (req, res) {
     try {
-        const leaderboard = await Leaderboard.create( req.body );
+        const leaderboard = await Leaderboard.create(req.body);
         res.status(201).json(leaderboard)
     } catch (err) {
         res.status(422).json({err})
