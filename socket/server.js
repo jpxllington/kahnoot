@@ -13,6 +13,8 @@ const game = new Game();
 
 io.on("connection", socket => {
     console.log("connected");
+
+    let socketID = socket.id
     socket.on("create", (roomName, username,cb) =>{
         game.addGame(username, roomName);
         // socket.join(username);
@@ -23,7 +25,7 @@ io.on("connection", socket => {
     })
        
     socket.on("joinRoom", (username, roomName,cb) => {
-        game.addPlayer(username, roomName);
+        game.addPlayer(username, roomName, socketID);
         socket.join(roomName);
         // socket.emit(`${username} has joined`)
         try{
@@ -39,15 +41,16 @@ io.on("connection", socket => {
         } catch(e){
             console.warn(e);
         }
-        
-    })
+         })
 
-    socket.on("disconnect", (username,roomName) => {
-        // console.log(socket);
-        let playernum = game.deletePlayer(roomName, username)
-        if(!playernum){
+    socket.on("disconnect",()=>{  
+        
+        let {updatedPlayers,roomName} = game.deletePlayer(socketID)
+        console.log(updatedPlayers, );
+        if(!updatedPlayers.length){
             game.deleteRoom(roomName)
         }
+        socket.broadcast.emit("updatedPlayers", updatedPlayers)
     })
 
     socket.on("add-config", (config) => {
@@ -95,7 +98,7 @@ io.on("connection", socket => {
 
     socket.on("gameData", (roomName, cb) =>{
         let gamedata = game.getRoom(roomName)
-        console.log(gamedata.apiData);
+        // console.log(gamedata.apiData);
         cb({
             apiData: gamedata.apiData
         })
