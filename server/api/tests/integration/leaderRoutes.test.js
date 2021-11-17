@@ -16,6 +16,6 @@ describe ('leader endpoints', () => {
     it('should return a list of players in the leaderboard', async () => {
         const res = await request(api).get('/leaderboard');
         expect(res.statusCode).toEqual(200);
-        expect(res.body.length).toEqual(3);
+        expect(res.body.length).toHaveLength(3);
     });
 })
