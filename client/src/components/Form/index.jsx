@@ -46,10 +46,10 @@ export const CreateForm = () => {
 
     return (
         <form onSubmit={handleGenQuiz} id='quizParameters'>
-            <select value={category} form='quizParameters' name='topic' id='topic' onChange={(e) => setCategory(e.target.value)} >
+            <select value={category} form='quizParameters' name='topic' id='topic' role="select_topic" onChange={(e) => setCategory(e.target.value)} >
                 {categoryList.map((x, i) => <option key={i} value={x.id}>{x.category}</option>)}
             </select>
-            <select value={difficulty} name="difficulty" form="quizParameters" id="difficulty" onChange={(e) => setDifficulty(e.target.value)}>
+            <select value={difficulty} name="difficulty" form="quizParameters" id="difficulty" role="select_difficulty" onChange={(e) => setDifficulty(e.target.value)}>
                 <option value='easy'>Easy</option>
                 <option value='medium'>Medium</option>
                 <option value='hard'>Hard</option>

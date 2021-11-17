@@ -10,7 +10,7 @@ export const App = () => {
             <Header/>
             <Switch>
                 <Route exact path="/">
-                    <Pages.HomePage />
+                    <Pages.Homepage />
                 </Route>
                 <Route path="/quiz">
                     <Pages.QuizPage />
