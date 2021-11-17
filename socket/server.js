@@ -34,6 +34,8 @@ io.on("connection", socket => {
                 host: currentGame.host
             })
 
+            socket.broadcast.emit("updatedPlayers", currentGame.players)
+
         } catch(e){
             console.warn(e);
         }

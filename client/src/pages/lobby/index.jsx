@@ -18,11 +18,11 @@ export const Lobby = () => {
     const [hostyBOi, setHostyBOi] = useState(false)
     const room = useSelector(state => state.user.room)
     const players = useSelector(state => state.user.players)
-
+    console.log(players);
     console.log(apiData);
     const handleClick = () => {
         console.log("button pressed");
-        socket.emit("game-start-request", (res)=>{
+        socket.emit("game-start-request", (roomName,res)=>{
 
         })
     }
@@ -52,9 +52,13 @@ export const Lobby = () => {
     }, [])
 
 
+    socket.on("updatedPlayers", (players) => {
+        dispatch(addPlayers(players));
+    })
+
     return (
         <>
-            {players.map((player) => <PlayerCard key={players.indexOf(player)} player={player} />)}
+            {players.map((player) => <PlayerCard key={players.indexOf(player)} username={player.username} />)}
             { hostyBOi ? <button onClick={handleClick}>Go to quiz</button> : <p>Waiting for host to start quiz</p>}
         </>
     )
