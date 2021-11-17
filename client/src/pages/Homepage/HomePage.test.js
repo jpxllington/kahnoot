@@ -1,14 +1,17 @@
-import {  Homepage } from '.';
+import {  HomePage } from '.';
 import { render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { shallow } from 'enzyme';
 import axios from 'axios';
 jest.mock('axios');
+import 'core-js';
+import '@types/node';
+import setImmediate from 'setimmediate';
 
-describe('Homepage', () => {
+describe('HomePage', () => {
 
     test('it renders', () => {
-        render(<Homepage />)
+        render(<HomePage />)
         const heading = screen.getByRole('heading')
         expect(heading.textContent).toContain('Kahnoot')
         // const heading = screen.getByText('Leaderboard')
@@ -16,7 +19,7 @@ describe('Homepage', () => {
     });
 
     test('it renders the buttons', () => {
-        render(<Homepage />)
+        render(<HomePage />)
         const join= screen.getByRole('join');
         const create = screen.getByRole('create');
 
