@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./style.css"
 export const GameTimer = ({ duration, timerDone }) => {
     const [currentTimer, setCurrentTimer] = useState(0)
 
@@ -19,7 +19,7 @@ export const GameTimer = ({ duration, timerDone }) => {
 
 
     return (
-        <div className="countDownTimer">
+        <div className="countDownTimer" style={style}>
 
         </div>
     )
