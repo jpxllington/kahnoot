@@ -5,12 +5,12 @@ import './style.css'
 
 export const Results = () => {
     // Get correct answers of quiz
-    const apiData = useSelector(state => state.apiData);
+    const apiData = useSelector(state => state.quiz.apiData);
     const correctAnswers = apiData.map(a => he.decode(a.correct_answer));
     // Get current user's answers
-    const finalAnswers = useSelector(state => state.finalAnswers);
+    const finalAnswers = useSelector(state => state.quiz.finalAnswers);
     // Get all player usernames, scores
-    const score = useSelector(state => state.score);
+    const score = useSelector(state => state.quiz.score);
     const players = [{ username: "player", score }]
 
     // Hard-coded to see how page looks without doing quiz

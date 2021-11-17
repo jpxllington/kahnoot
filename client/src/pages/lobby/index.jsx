@@ -9,12 +9,12 @@ import { storeQuestions } from "../../actions";
 export const Lobby = () => {
     let history = useHistory();
     let dispatch = useDispatch();
-    let username = useSelector(state => state.username)
-    let roomName = useSelector(state => state.roomName)
-    let apiData = useSelector(state => state.apiData)
+    let username = useSelector(state => state.quiz.username)
+    let roomName = useSelector(state => state.quiz.roomName)
+    let apiData = useSelector(state => state.quiz.apiData)
     
     const room = useSelector(state => state.user.room)
-    const players = useSelector(state => state.user.player)
+    const players = useSelector(state => state.user.players)
 
     console.log(apiData);
     const handleClick = () => {
@@ -25,6 +25,7 @@ export const Lobby = () => {
     useEffect(() => {
         socket.emit("joinRoom", username, roomName, (res) => {
             console.log(res);
+            dispatch(setHost())
             if (res.host === username) {
                 socket.emit("sendData", JSON.stringify(apiData), roomName, (res) => { })
             } else {

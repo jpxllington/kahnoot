@@ -1,10 +1,10 @@
-const init = {
+const defaultState = {
     players: [],
     room: null
 
 }
 
-export const playerReducer = (state = init, action) => {
+export const playerReducer = (state = defaultState, action) => {
     switch (action.type) {
         case "ADD_PLAYER":
             return {
@@ -16,6 +16,6 @@ export const playerReducer = (state = init, action) => {
         case "SET ERROR":
             return { ...state, error: action.payload };
         default:
-            state;
+            return state;
     }
 }

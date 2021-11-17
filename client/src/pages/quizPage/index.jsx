@@ -11,8 +11,8 @@ export const QuizPage = () => {
     const [answers, setAnswers] = useState([])
     const [question, setQuestion] = useState("")
 
-    let currentQ = useSelector(state => state.currentQ);
-    const apiData = useSelector(state => state.apiData);
+    let currentQ = useSelector(state => state.quiz.currentQ);
+    const apiData = useSelector(state => state.quiz.apiData);
 
     const history = useHistory();
     const dispatch = useDispatch();
