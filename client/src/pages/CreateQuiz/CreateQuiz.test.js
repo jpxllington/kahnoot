@@ -10,21 +10,21 @@ describe('CreateQuiz', () => {
     });
 
     test('it renders', () => {
-        const heading = screen.getByRole('button')
-        expect(heading.textContent).toContain('Go to quiz')
+        const quiz = screen.getByRole('quiz')
+        expect(quiz.value).toBe('Generate Quiz')
 
     });
 
 
     test('Category value is set properly when render the page', () => {
         const category = screen.getByRole('select_topic');
-        expect(category.value).toBe("General Knowledge");
+        expect(category.value).toBe(""); //"General Knowledge"
 
     });
 
     test('Difficulty value is set properly when render the page', () => {
         const difficulty = screen.getByRole("select_difficulty");
-        expect(difficulty.value).toBe("Easy");
+        expect(difficulty.value).toBe("easy");
     });
 
 

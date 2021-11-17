@@ -22,6 +22,9 @@ describe("CreateForm", () => {
         let numberOfQuestions = screen.getByRole("set_nuumber");
         expect(numberOfQuestions).toBeInTheDocument();
     });
+})
+
+describe("CreateForm 2", () => {
 
     test('Simulates topic selection', () => {
         const { getByTestId, getAllByTestId } = renderWithProviders(<CreateForm />);
@@ -34,13 +37,23 @@ describe("CreateForm", () => {
         expect(options[4].selected).toBeFalsy();
     })
 
-    test('Simulates difficualty selection', () => {
+    test('Simulates difficualty selection (sets to medium)', () => {
         const { getByTestId, getAllByTestId } = renderWithProviders(<CreateForm />);
-        fireEvent.change(getByTestId('select-difficulty'), { target: { value: "Medium" } })
+        fireEvent.change(getByTestId('select-difficulty'), { target: { value: "medium" } })
         let options = getAllByTestId('select-difficulty-option')
         expect(options[0].selected).toBeFalsy();
         expect(options[1].selected).toBeTruthy();
         expect(options[2].selected).toBeFalsy();
+
+    })
+
+    test('Simulates difficualty selection (sets to hard)', () => {
+        const { getByTestId, getAllByTestId } = renderWithProviders(<CreateForm />);
+        fireEvent.change(getByTestId('select-difficulty'), { target: { value: "hard" } })
+        let options = getAllByTestId('select-difficulty-option')
+        expect(options[0].selected).toBeFalsy();
+        expect(options[1].selected).toBeFalsy();
+        expect(options[2].selected).toBeTruthy();
 
     })
 

@@ -21,8 +21,8 @@ export const Quiz = ({ answers, authenticate, timerDone }) => {
     }
     return (
         <>
-            <GameTimer duration={8000} timerDone={timerDone} />
-            <form>
+            <GameTimer role ="timer" duration={8000} timerDone={timerDone} />
+            <form role ="answers-form">
                 {renderAnswers()}
                 <input type="hidden" value={chosenAnswer} />
 
