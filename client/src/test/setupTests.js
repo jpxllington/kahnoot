@@ -3,46 +3,35 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
 import "@testing-library/jest-dom";
+import { MemoryRouter } from 'react-router-dom';
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import { quizReducer } from "../reducers";
+import { quizStore } from '../store';
 
-const TestProviders = ({ initState}) => {
-  initState ||= {
-    apiData: [],
-    correctAnswer: "",
-    currentAnswer: "",
-    finalAnswers: [],
-    currentQ: 0,
-    score: 0
-  };
- 
-  let testReducer = () => quizReducer(initState, { type: "@@INIT" });
+const WrapProviders = ({ children }) => {
+  return (
+    <MemoryRouter>
+      <Provider store={quizStore}>
+        {children}
+      </Provider>
+    </MemoryRouter>
+  )
+}
 
-  const testStore = createStore(testReducer, applyMiddleware(thunk));
+const renderWithProviders = (ui) => render(ui, { wrapper: WrapProviders })
 
-  return ({ children }) => <Provider store={testStore}>{children}</Provider>;
-};
+// import axios from "axios";
+// jest.mock("axios");
 
-const renderWithReduxProvider = (ui, options = {}) => {
-  let TestWrapper = TestProviders(options);
-  render(ui, { wrapper: TestWrapper, ...options });
-};
+// axios.get.mockResolvedValue({
+//   data: [
+//     {
+//       correctAnswer: "Silver",
+//       currentAnswer: "Gold",
+//     },
+//   ],
+// });
 
-import axios from "axios";
-jest.mock("axios");
-
-axios.get.mockResolvedValue({
-  data: [
-    {
-        correctAnswer: "Silver",
-        currentAnswer: "Gold",
-    },
-  ],
-});
-
-global.renderWithReduxProvider = renderWithReduxProvider;
+global.renderWithProviders = renderWithProviders;
 global.React = React;
 global.render = render;
 global.userEvent = userEvent;
