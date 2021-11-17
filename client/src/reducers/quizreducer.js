@@ -15,20 +15,15 @@ export const quizReducer = (state = init, action) => {
             return {
                 ...state,
                 apiData: action.payload,
+                // Reset data in case user has decided to play again
                 finalAnswers: [],
                 currentQ: 0,
                 score: 0
             };
         case "SET_CORRECT_ANSWER":
-            return {
-                ...state,
-                correctAnswer: action.payload
-            };
+            return { ...state, correctAnswer: action.payload };
         case "SET_CURRENT_ANSWER":
-            return {
-                ...state,
-                currentAnswer: action.payload
-            };
+            return { ...state, currentAnswer: action.payload };
         case "CHANGE_QUESTION":
             return {
                 ...state,
@@ -48,6 +43,8 @@ export const quizReducer = (state = init, action) => {
                 roomName:action.payload.roomName,
                 username:action.payload.username
             };
+        case "SET_ERROR":
+            return { ...state, error: action.payload };
         default:
             return state;
     }
