@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useHistory } from "react-router"
 import { socket } from "../../socket";
-import { useSelector, useDispatch} from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { storeQuestions } from "../../actions";
-=======
-import React from "react";
-import { useHistory } from "react-router";
->>>>>>> dev/golnar
 
 export const Lobby = () => {
     let history = useHistory();
@@ -15,20 +10,20 @@ export const Lobby = () => {
     let username = useSelector(state => state.username)
     let roomName = useSelector(state => state.roomName)
     let apiData = useSelector(state => state.apiData)
-    
+
     console.log(apiData);
     const handleClick = () => {
         history.push("/quiz")
     }
 
 
-    useEffect(()=>{
-        socket.emit("joinRoom", username, roomName,(res)=>{
+    useEffect(() => {
+        socket.emit("joinRoom", username, roomName, (res) => {
             console.log(res);
-            if (res.host === username){
-                socket.emit("sendData", JSON.stringify(apiData), roomName,(res)=>{})
+            if (res.host === username) {
+                socket.emit("sendData", JSON.stringify(apiData), roomName, (res) => { })
             } else {
-                socket.emit("gameData", roomName,(res)=>{
+                socket.emit("gameData", roomName, (res) => {
 
                     let gameData = JSON.parse(res.apiData);
                     console.log(gameData);
@@ -36,9 +31,9 @@ export const Lobby = () => {
                 })
             }
         })
-        
-    },[])
-   
+
+    }, [])
+
 
     return (
         <>
