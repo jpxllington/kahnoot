@@ -19,9 +19,10 @@ class Game{
         return game;
     } 
 
-    addPlayer(username, roomName){
+    addPlayer(username, roomName, socketID){
         let player = {
             username:username, 
+            socketID:socketID,
             score: 0
         }
         console.log(player);
@@ -69,21 +70,45 @@ class Game{
         return this.games
     }
 
-    deletePlayer(roomName,username){
-        let room = this.getRoom(roomName)
-        if(room){
-            playerIndex = room.players.findIndex(player => player.username === username)
-            room.players.splice(playerIndex, 1)
-            return room.players.length
-        }else{
-            return
+    deletePlayer(socketID){
+        for (let i = 0; i <this.games.length; i++){
+            try{
+                let playerIndex = this.games[i].players.findIndex(player => player.socketID === socketID)
+                if (playerIndex > -1){
+                    this.games[i].players.splice(playerIndex, 1);
+                    let roomName = this.games[i].roomName;
+                    return {updatedPlayers:this.games[i].players,roomName:roomName}
+                }
+
+            }catch(e){
+                console.warn(e);
+            }
         }
+        // let game = this.games.filter(game => !!game.players.find(player => player.socketID===socketID))
+        // console.log(game.players);
+        // console.log(socketID);
+        // if(game.length > 0){
+        //     let playerIndex = game.players.findIndex(player => player.socketID === socketID)
+        //     game.splice(playerIndex, 1);
+        //     return game.players
+
+        // } else {
+        //     console.log("I haven't broken yet");
+        // }
+        // let room = this.getRoom(roomName)
+        // if(room){
+        //     playerIndex = room.players.findIndex(player => player.username === username)
+        //     room.players.splice(playerIndex, 1)
+        //     return room.players.length
+        // }else{
+        //     return
+        // }
     }
 
     addData(apiData,roomName){
-        console.log(roomName);
+
         let room = this.getRoom(roomName);
-        console.log(room);
+
         room.apiData = apiData;
         return room
     }
