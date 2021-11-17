@@ -3,28 +3,22 @@ import { Quiz } from "../../components";
 import { Question } from "../../components";
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeQ } from '../../actions';
+import { changeQ, endQuiz, setCorrect, setCurrent } from '../../actions';
 import he from 'he';
 
 export const QuizPage = () => {
 
     const [answers, setAnswers] = useState([])
     const [question, setQuestion] = useState("")
-    const [correctAnswer, setCorrectAnswer] = useState("")
 
     let currentQ = useSelector(state => state.currentQ);
     const apiData = useSelector(state => state.apiData);
-    console.log(apiData);
 
-    let correct = false
     const history = useHistory();
     const dispatch = useDispatch();
 
     const authenticate = (chosenAnswer) => {
-        correct = !!chosenAnswer && chosenAnswer === correctAnswer;
-        console.log(correct);
-        console.log(correctAnswer);
-        console.log(chosenAnswer);
+        dispatch(setCurrent(chosenAnswer));
     }
 
     function shuffle(array) {
@@ -44,10 +38,13 @@ export const QuizPage = () => {
 
 
     const timerDone = (qIndex) => {
-        qIndex === apiData.length ? history.push('/results')
-            : dispatch(changeQ())
-        console.log(apiData[qIndex]);
-        console.log("next question");
+        if (qIndex === apiData.length) {
+            dispatch(endQuiz());
+            history.push('/results');
+        } else {
+            console.log("next question");
+            dispatch(changeQ())
+        }
     }
 
     useEffect(() => {
@@ -58,14 +55,15 @@ export const QuizPage = () => {
             let shuffled = shuffle(answers);
             setAnswers(shuffled);
             setQuestion(question);
-            setCorrectAnswer(data.correct_answer)
+            dispatch(setCorrect(he.decode(data.correct_answer)))
+            dispatch(setCurrent(""))
         }
-        console.log(apiData);
         recievesQuestionData(apiData[currentQ])
     }, [currentQ])
 
     return (
         <>
+            {/* <PlayerList/> */}
             <Question question={question} />
             <Quiz answers={answers} authenticate={authenticate} timerDone={timerDone} />
         </>

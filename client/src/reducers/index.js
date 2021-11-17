@@ -1,1 +1,1 @@
-export { quizReducer } from './quizreducer'
+export { quizReducer } from './quizReducer'

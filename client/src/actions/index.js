@@ -20,3 +20,13 @@ export const fetchQuiz = (amount, category, difficulty) => {
 };
 
 export const changeQ = () => ({ type: "CHANGE_QUESTION" })
+export const endQuiz = () => ({ type: "END_QUIZ" })
+
+export const setCorrect = (answer) => ({ type: "SET_CORRECT_ANSWER", payload: answer })
+export const setCurrent = (answer) => ({ type: "SET_CURRENT_ANSWER", payload: answer })
+export const setRoom = (username,roomName) => ({ type: "SET_ROOM", payload:{username,roomName}})
+export const storeQuestions = (apiData) => ({type: "STORE_QUESTIONS", payload: apiData});
+
+
+export const db_URL = "http://localhost/";
+export const socket_URL = "http://localhost/1234"

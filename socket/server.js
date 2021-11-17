@@ -1,41 +1,46 @@
 const server = require("http").createServer();
+const Game = require("./model")
 
 const io = require("socket.io")(server, {
     cors: {
         origin: "*",
-        method: ["GET","POST"]
+        method: ["GET","POST"],
+        credentials:true
     }
 });
 
-const rooms = [
-    {
-        id:"",
-        players: [{username:"", id:1},2,3,4]
-    },
-];
+const game = new Game();
 
 io.on("connection", socket => {
-    socket.on("create", (roomID, username) => {
-        socket.join(roomID);
-
-        const roomIndex = rooms.findIndex(r => r.id === roomID);
-        if(roomIndex===-1){
-            rooms.push({id: roomID, players:[{username: username ,id:socket.id}]})
-        } else {
-            rooms[roomIndex]['players'].push({username:username, id:socket.id})
-        }
-        io.to(roomID).emit("players",rooms.slice(roomIndex, roomIndex + 1||rooms.length))
+    console.log("connected");
+    socket.on("create", (roomName, username,cb) =>{
+        game.addGame(username, roomName);
+        // socket.join(username);
+        // game.addPlayer(username,roomName);
+        cb({
+            message: "game successfully created"
+        })
+    })
+       
+    socket.on("joinRoom", (username, roomName,cb) => {
+        game.addPlayer(username, roomName);
+        socket.join(roomName);
+        // socket.emit(`${username} has joined`)
+        let currentGame = game.getRoom(roomName);
+        console.log(currentGame);
+        cb({
+            players: currentGame.players,
+            host: currentGame.host
+        })
+        
     })
 
-    socket.on("disconnect", ()=>{
-        let playerIndex = rooms[roomIndex]['players'].findIndex(p => p.id ===socket.id)
-        rooms[roomIndex]['players'].splice(playerIndex,1)
-        if (rooms[roomIndex]['players'].length === 0){
-            rooms.splice(roomIndex,1)
-        } else {
-            io.to(roomID).emit("players",rooms.slice(roomIndex, roomIndex + 1||rooms.length))
+    socket.on("disconnect", (username,roomName) => {
+        // console.log(socket);
+        let playernum = game.deletePlayer(roomName, username)
+        if(!playernum){
+            game.deleteRoom(roomName)
         }
-        
     })
 
     socket.on("add-config", (config) => {
@@ -48,14 +53,14 @@ io.on("connection", socket => {
         io.in(roomID).emit(gamePlayers);
     })
     
-    io.to(roomName),emmit('game-players');
+    // io.to(roomName).emit('game-players');
 
     socket.on("game-start", (roomID) =>{
         io.to(roomID).emit("game-start", true)
     })
 
     socket.on('scores', (config, cb) => {
-        let scores = games.addScore(config.room, config.username, config.score)
+        let scores = game.addScore(config.room, config.username, config.score)
         io.to(config.room).emit('score',scores)
 
         cb({
@@ -63,7 +68,30 @@ io.on("connection", socket => {
             scores:scores
         })
     })
+
+    socket.on("check-room", (roomName,cb)=>{
+        let room = game.checkRoom(roomName)
+        console.log(room); 
+        cb({
+            roomExists:room
+        })
+        // if(room){
+
+        // }
+    })
     
+    socket.on("sendData", (roomName, apiData, cb) => {
+        let updatedGame =game.addData(roomName,apiData)
+        console.log(updatedGame);
+    })
+
+    socket.on("gameData", (roomName, cb) =>{
+        let gamedata = game.getRoom(roomName)
+        console.log(gamedata.apiData);
+        cb({
+            apiData: gamedata.apiData
+        })
+    })
 })
 
 

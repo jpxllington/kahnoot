@@ -1,6 +1,6 @@
 const server = require("./server");
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 1234;
 
 
 server.listen(port, () => {
