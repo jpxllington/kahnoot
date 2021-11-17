@@ -1,0 +1,13 @@
+.countDownTimer{
+    height: 2rem;
+    transform-origin: left;
+    background: red;
+    animation: roundtime calc(var(--duration) * 1s) linear forwards;
+    animation-iteration-count: infinite;
+    border-radius: 5px;
+}
+@keyframes roundtime {
+    to {
+        transform: scaleX(0);
+    }
+}

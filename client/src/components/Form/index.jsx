@@ -1,7 +1,8 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
+import { socket } from '../../socket'
 // import './style.css'
 import axios from 'axios';
 import { fetchQuiz } from '../../actions';
@@ -15,13 +16,18 @@ export const CreateForm = () => {
     const [categoryList, setCategoryList] = useState([])
     let history = useHistory();
     const dispatch = useDispatch();
-
-
-
+    let username = useSelector(state=>state.username)
+    let roomName = useSelector(state=>state.roomName)
+    let apiData = useSelector(state=>state.apiData)
     const handleGenQuiz = async (e) => {
         e.preventDefault();
         await dispatch(fetchQuiz(amount, category, difficulty))
-        history.push('/lobby')
+        // apiData = await JSON.stringify(apiData)
+        socket.emit('create', roomName,username,JSON.stringify(apiData), (res) => {
+            if(res.message==="game successfully created"){
+                history.push('/lobby')
+            }
+        })
     }
 
     useEffect(() => {
