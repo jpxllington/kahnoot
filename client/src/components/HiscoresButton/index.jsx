@@ -8,9 +8,11 @@ import axios from 'axios';
 
 export const HiscoresButton = () => {
 
-
+    function handleRedirect(){
+        
+    }
 
 
     return (
-        <button onClick={}>Go to Hiscores</button>)
+        <button onClick={(e) => handleRedirect(e)}>Go to Hiscores</button>)
 }
