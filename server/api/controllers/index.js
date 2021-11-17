@@ -11,7 +11,7 @@ async function index(req, res) {
 
 async function show(req, res) {
     try {
-        const leaderboard = await Leaderboard.findById(req.params.id);
+        const leaderboard = await Leaderboard.findbyName(req.params.name);
         res.status(200).json(leaderboard)
     } catch (err) {
         res.status(404).json({err})

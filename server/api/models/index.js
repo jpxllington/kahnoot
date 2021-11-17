@@ -22,6 +22,20 @@ class Leaderboard {
        
     }
 
+    static findbyName(name) {
+        return new Promise (async (resolve, reject) => {
+            try {
+                let leaderData = await db.query(`SELECT * FROM leaderboard WHERE name = $1;`, [ name ]);
+                if (leaderData.rows.length === 0) throw new Error(`No user with the name ${name}.`)
+                let leader = new Leaderboard(leaderData.rows[0]);
+                resolve (leader);
+            } catch (err) {
+                reject('Entry not found');
+            }
+        });
+    
+    }
+
     // static create(quizData){
     //     return new Promise (async (resolve, reject) => {
     //         try {
