@@ -13,24 +13,26 @@ const game = new Game();
 
 io.on("connection", socket => {
     console.log("connected");
-    socket.on("create", (roomName, username, apiData,cb) =>{
-        game.addGame(username, roomName, apiData);
-        socket.join(username);
-        game.addPlayer(username,roomName);
+    socket.on("create", (roomName, username,cb) =>{
+        game.addGame(username, roomName);
+        // socket.join(username);
+        // game.addPlayer(username,roomName);
         cb({
             message: "game successfully created"
         })
     })
        
-    socket.on("joinRoom", (username, roomName) => {
+    socket.on("joinRoom", (username, roomName,cb) => {
         game.addPlayer(username, roomName);
         socket.join(roomName);
-        socket.emit(`${username} has joined`)
-        let currentGame = game.getRoom(roomName)
-        io.to(currentGame.host).emit("playerConnected", {
-            name: username, 
-            score:0
+        // socket.emit(`${username} has joined`)
+        let currentGame = game.getRoom(roomName);
+        console.log(currentGame);
+        cb({
+            players: currentGame.players,
+            host: currentGame.host
         })
+        
     })
 
     socket.on("disconnect", (username,roomName) => {
@@ -78,7 +80,18 @@ io.on("connection", socket => {
         // }
     })
     
-    
+    socket.on("sendData", (roomName, apiData, cb) => {
+        let updatedGame =game.addData(roomName,apiData)
+        console.log(updatedGame);
+    })
+
+    socket.on("gameData", (roomName, cb) =>{
+        let gamedata = game.getRoom(roomName)
+        console.log(gamedata.apiData);
+        cb({
+            apiData: gamedata.apiData
+        })
+    })
 })
 
 

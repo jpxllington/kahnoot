@@ -18,12 +18,12 @@ export const CreateForm = () => {
     const dispatch = useDispatch();
     let username = useSelector(state=>state.username)
     let roomName = useSelector(state=>state.roomName)
-    let apiData = useSelector(state=>state.apiData)
+
     const handleGenQuiz = async (e) => {
         e.preventDefault();
         await dispatch(fetchQuiz(amount, category, difficulty))
         // apiData = await JSON.stringify(apiData)
-        socket.emit('create', roomName,username,JSON.stringify(apiData), (res) => {
+        await socket.emit('create', roomName,username, (res) => {
             if(res.message==="game successfully created"){
                 history.push('/lobby')
             }
@@ -51,16 +51,16 @@ export const CreateForm = () => {
 
 
     return (
-        <form onSubmit={handleGenQuiz} id='quizParameters'>
-            <select value={category} form='quizParameters' name='topic' id='topic' onChange={(e) => setCategory(e.target.value)} >
-                {categoryList.map((x, i) => <option key={i} value={x.id}>{x.category}</option>)}
+        <form onSubmit={handleGenQuiz} id='quizParameters' role="generate_quiz">
+            <select data-testid="select-topic" value={category} form='quizParameters' name='topic' id='topic' role="select_topic" onChange={(e) => setCategory(e.target.value)} >
+                {categoryList.map((x, i) => <option data-testid="select-topic-option" key={i} value={x.id}>{x.category}</option>)}
             </select>
-            <select value={difficulty} name="difficulty" form="quizParameters" id="difficulty" onChange={(e) => setDifficulty(e.target.value)}>
-                <option value='easy'>Easy</option>
-                <option value='medium'>Medium</option>
-                <option value='hard'>Hard</option>
+            <select data-testid="select-difficulty" value={difficulty} name="difficulty" form="quizParameters" id="difficulty" role="select_difficulty" onChange={(e) => setDifficulty(e.target.value)}>
+                <option data-testid="select-difficulty-option" value='easy'>Easy</option>
+                <option data-testid="select-difficulty-option" value='medium'>Medium</option>
+                <option data-testid="select-difficulty-option" value='hard'>Hard</option>
             </select>
-            <input type="number" id="amount" name="amount" min="5" max="25" value={amount} onChange={(e) => setAmount(e.target.value)} />
+            <input role="set_nuumber" type="number" id="amount" name="amount" min="5" max="25" value={amount} onChange={(e) => setAmount(e.target.value)} />
             <input type='submit' value="Generate Quiz" />
 
         </form>
