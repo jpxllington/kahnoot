@@ -1,4 +1,3 @@
-const { TestWatcher } = require('@jest/core');
 const leaderController = require('../../../controllers')
 const Leaderboard = require('../../../models')
 
@@ -31,10 +30,10 @@ describe('leaders controller', () => {
                 difficulty: 'Easy', 
                 score: 5
             }
-            jest.spyOn(Leaderboard, 'all','get')
+            jest.spyOn(Leaderboard, 'findByName')
                 .mockResolvedValue(new Leaderboard(testLeaderboard));
                 
-            const mockReq = { params: { id: 1 } }
+            const mockReq = { params: { name: 'Test Name' } }
             await leaderController.show(mockReq, mockRes);
             expect(mockStatus).toHaveBeenCalledWith(200);
             expect(mockJson).toHaveBeenCalledWith(new Leaderboard(testLeaderboard));

@@ -5,7 +5,7 @@ describe ('leader endpoints', () => {
     });
 
     beforeAll(async () => {
-        api = app.listen(5000, () => console.log('Test server running on port 5000'))
+        api = app.listen(5500, () => console.log('Test server running on port 5500'))
     });
 
     afterAll(async () => {

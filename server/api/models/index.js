@@ -22,7 +22,7 @@ class Leaderboard {
        
     }
 
-    static findbyName(name) {
+    static findByName(name) {
         return new Promise (async (resolve, reject) => {
             try {
                 let leaderData = await db.query(`SELECT * FROM leaderboard WHERE name = $1;`, [ name ]);
