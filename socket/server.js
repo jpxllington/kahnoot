@@ -4,8 +4,8 @@ const Game = require("./model")
 const io = require("socket.io")(server, {
     cors: {
         origin: "*",
-        method: ["GET","POST"],
-        credentials:true
+        method: ["GET", "POST"],
+        credentials: true
     }
 });
 
@@ -15,7 +15,7 @@ io.on("connection", socket => {
     console.log("connected");
 
     let socketID = socket.id
-    socket.on("create", (roomName, username,cb) =>{
+    socket.on("create", (roomName, username, cb) => {
         game.addGame(username, roomName);
         // socket.join(username);
         // game.addPlayer(username,roomName);
@@ -23,12 +23,12 @@ io.on("connection", socket => {
             message: "game successfully created"
         })
     })
-       
-    socket.on("joinRoom", (username, roomName,cb) => {
+
+    socket.on("joinRoom", (username, roomName, cb) => {
         game.addPlayer(username, roomName, socketID);
         socket.join(roomName);
         // socket.emit(`${username} has joined`)
-        try{
+        try {
             let currentGame = game.getRoom(roomName);
             console.log(currentGame);
             cb({
@@ -38,19 +38,25 @@ io.on("connection", socket => {
 
             socket.broadcast.emit("updatedPlayers", currentGame.players)
 
-        } catch(e){
+        } catch (e) {
             console.warn(e);
         }
-         })
+    })
 
-    socket.on("disconnect",()=>{  
-        
-        let {updatedPlayers,roomName} = game.deletePlayer(socketID)
-        console.log(updatedPlayers, );
-        if(!updatedPlayers.length){
-            game.deleteRoom(roomName)
+    socket.on("disconnect", () => {
+
+        let resp = game.deletePlayer(socketID);
+        if (resp.updatedPlayers && resp.roomName) {
+            let { updatedPlayers, roomName } = resp;
+            // let {updatedPlayers,roomName} = game.deletePlayer(socketID)
+            console.log(updatedPlayers);
+            if (!updatedPlayers.length) {
+                game.deleteRoom(roomName)
+            }
+            socket.broadcast.emit("updatedPlayers", updatedPlayers)
+        } else {
+            console.log(resp.message);
         }
-        socket.broadcast.emit("updatedPlayers", updatedPlayers)
     })
 
     socket.on("add-config", (config) => {
@@ -62,41 +68,41 @@ io.on("connection", socket => {
         const gamePlayers = games.getPlayers(roomID)
         io.in(roomID).emit(gamePlayers);
     })
-    
+
     // io.to(roomName).emit('game-players');
 
-    socket.on("game-start", (roomID) =>{
+    socket.on("game-start", (roomID) => {
         io.to(roomID).emit("game-start", true)
     })
 
     socket.on('scores', (config, cb) => {
         let scores = game.addScore(config.room, config.username, config.score)
-        io.to(config.room).emit('score',scores)
+        io.to(config.room).emit('score', scores)
 
         cb({
             code: "success",
-            scores:scores
+            scores: scores
         })
     })
 
-    socket.on("check-room", (roomName,cb)=>{
+    socket.on("check-room", (roomName, cb) => {
         let room = game.checkRoom(roomName)
-        console.log(room); 
+        console.log(room);
         console.log(game);
         cb({
-            roomExists:room
+            roomExists: room
         })
         // if(room){
 
         // }
     })
-    
+
     socket.on("sendData", (roomName, apiData, cb) => {
-        let updatedGame =game.addData(roomName,apiData)
+        let updatedGame = game.addData(roomName, apiData)
         console.log(updatedGame);
     })
 
-    socket.on("gameData", (roomName, cb) =>{
+    socket.on("gameData", (roomName, cb) => {
         let gamedata = game.getRoom(roomName)
         // console.log(gamedata.apiData);
         cb({
@@ -104,7 +110,7 @@ io.on("connection", socket => {
         })
     })
 
-    socket.on("game-start-request", (roomName, cb) =>{
+    socket.on("game-start-request", (roomName, cb) => {
         console.log("youre getting here");
         socket.broadcast.emit("game-start")
         socket.emit("game-start")
