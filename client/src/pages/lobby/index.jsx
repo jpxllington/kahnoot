@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useHistory } from "react-router"
+import { useHistory } from "react-router";
 import { socket } from "../../socket";
 import { useSelector, useDispatch } from "react-redux";
 import { storeQuestions } from "../../actions";
