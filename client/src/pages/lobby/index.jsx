@@ -5,17 +5,19 @@ import { useSelector } from "react-redux";
 import { socket} from "../../socket"
 
 export const Lobby = () => {
-    const room = useSelector(state => state.roomName)
-    const [players, setPlayers] = useState([])
+    const room = useSelector(state => state.user.room)
+    const players = useSelector(state => state.user.player)
+
+    // const [players, setPlayers] = useState([])
 
     let history =useHistory();
     const handleClick = () => {
         history.push("/quiz")
     }
     
-    let currentPlayers = useSelector(state => state.players);
     
-    socket.emit('players', roomName, (res))
+    
+    socket.emit('players', room, (res))
 
     
     
