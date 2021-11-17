@@ -1,7 +1,7 @@
 const defaultState = {
     players: [],
-    room: null
-
+    room: null,
+    host:""
 }
 
 export const playerReducer = (state = defaultState, action) => {
@@ -13,9 +13,14 @@ export const playerReducer = (state = defaultState, action) => {
                 room: action.payload.room
                 
             };
-        case "SET ERROR":
+        case "SET_ERROR":
             return { ...state, error: action.payload };
+        case "SET_HOST":
+            return { ...state, host: action.payload };
+        case "SET_PLAYER":
+            return { ...state, players: action.payload };
         default:
             return state;
+        
     }
 }
