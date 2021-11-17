@@ -45,7 +45,7 @@ export const CreateForm = () => {
 
 
     return (
-        <form onSubmit={handleGenQuiz} id='quizParameters'>
+        <form onSubmit={handleGenQuiz} id='quizParameters' role="generate_quiz">
             <select value={category} form='quizParameters' name='topic' id='topic' role="select_topic" onChange={(e) => setCategory(e.target.value)} >
                 {categoryList.map((x, i) => <option key={i} value={x.id}>{x.category}</option>)}
             </select>
@@ -54,7 +54,7 @@ export const CreateForm = () => {
                 <option value='medium'>Medium</option>
                 <option value='hard'>Hard</option>
             </select>
-            <input type="number" id="amount" name="amount" min="5" max="25" value={amount} onChange={(e) => setAmount(e.target.value)} />
+            <input role="set_nuumber" type="number" id="amount" name="amount" min="5" max="25" value={amount} onChange={(e) => setAmount(e.target.value)} />
             <input type='submit' value="Generate Quiz" />
 
         </form>
