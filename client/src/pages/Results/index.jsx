@@ -45,7 +45,6 @@ export const Results = () => {
     }
 
     return (
-<<<<<<< HEAD
         <div className="results-tables">
             <table className="results-table" id="playerScores">
                 <thead>
@@ -70,12 +69,6 @@ export const Results = () => {
                     {renderAnswers()}
                 </tbody>
             </table>
-=======
-        <div>
-            <p>You scored {score}/{currentQ + 1}</p>
-            <Link to='/'><button>Home</button></Link>
-            {renderAnswers()}
->>>>>>> dev/golnar
         </div>
     )
 }
