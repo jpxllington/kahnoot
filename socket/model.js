@@ -1,68 +1,68 @@
 
 
-class Game{
+class Game {
 
-    constructor(){
+    constructor() {
         this.games = [];
         this.players = [];
     }
 
-    addGame(username,roomName){
+    addGame(username, roomName) {
         let game = {
-            host:username,
-            room:roomName,
-            players:[],
+            host: username,
+            room: roomName,
+            players: [],
             apiData: []
         }
         this.games.push(game);
         console.log(this.games);
         return game;
-    } 
+    }
 
-    addPlayer(username, roomName, socketID){
+    addPlayer(username, roomName, socketID) {
         let player = {
-            username:username, 
-            socketID:socketID,
+            username: username,
+            socketID: socketID,
             score: 0
         }
         console.log(player);
-        try{
+        try {
             let game = this.getRoom(roomName);
-            if(!!game){
+            if (!!game) {
                 game.players.push(player)
             }
-        } catch(err){
+        } catch (err) {
             console.warn(err);
         }
     }
 
-    getRoom(roomName){
-        try{
-            const currentGame = this.games.find(game=>game.room===roomName)
+    getRoom(roomName) {
+        try {
+            const currentGame = this.games.find(game => game.room === roomName)
             return currentGame;
 
-        }catch(err){
-            return(null);
+        } catch (err) {
+            return (null);
         }
     }
 
-    checkRoom(roomName){
+    checkRoom(roomName) {
         let room = this.getRoom(roomName);
-        return(!!room)
+        return (!!room)
     }
 
-    addPlayerScore(score, roomName, username){
+    addPlayerScore(score, roomName, username) {
         let room = this.getRoom(roomName);
-        try{
-            let player = room.players.find(player => player.username ===username)
+        try {
+            let player = room.players.find(player => player.username === username)
             player.score = score;
             return room.players;
-        } catch(err){
+        } catch (err) {
             console.warn(err);
         }
     }
 
-    deleteRoom(roomName){
+    deleteRoom(roomName) {
         console.log(this.games);
         let gameIndex = this.games.findIndex(game => game.roomName === roomName)
 
@@ -70,20 +70,23 @@ class Game{
         return this.games
     }
 
-    deletePlayer(socketID){
-        for (let i = 0; i <this.games.length; i++){
-            try{
+    deletePlayer(socketID) {
+        for (let i = 0; i < this.games.length; i++) {
+            try {
                 let playerIndex = this.games[i].players.findIndex(player => player.socketID === socketID)
-                if (playerIndex > -1){
+                if (playerIndex > -1) {
                     this.games[i].players.splice(playerIndex, 1);
-                    let roomName = this.games[i].roomName;
-                    return {updatedPlayers:this.games[i].players,roomName:roomName}
+                    let roomName = this.games[i].room;
+                    return { updatedPlayers: this.games[i].players, roomName: roomName }
                 }
 
-            }catch(e){
+            } catch (e) {
                 console.warn(e);
             }
         }
+        // If this point has been reached then it has not found a player
+        console.log("hey");
+        return { message: "No players found with that ID" };
         // let game = this.games.filter(game => !!game.players.find(player => player.socketID===socketID))
         // console.log(game.players);
         // console.log(socketID);
@@ -105,7 +108,7 @@ class Game{
         // }
     }
 
-    addData(apiData,roomName){
+    addData(apiData, roomName) {
 
         let room = this.getRoom(roomName);
 
