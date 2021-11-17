@@ -27,7 +27,7 @@ export const setCurrent = (answer) => ({ type: "SET_CURRENT_ANSWER", payload: an
 export const setRoom = (username,roomName) => ({ type: "SET_ROOM", payload:{username,roomName}})
 export const setHost = (host) => ({ type: "SET_HOST", payload: host})
 
-export const addPlayer = (player) => ({ type: "ADD_PLAYER", payload: {player}})
+export const addPlayers = (player) => ({ type: "ADD_PLAYER", payload: {player}})
 
 export const storeQuestions = (apiData) => ({type: "STORE_QUESTIONS", payload: apiData});
 
