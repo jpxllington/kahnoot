@@ -15,4 +15,14 @@ describe('Homepage', () => {
         // expect(heading.textContent).toContain('Leaderboard');
     });
 
+    test('it renders the buttons', () => {
+        render(<Homepage />)
+        const join= screen.getByRole('join');
+        const create = screen.getByRole('create');
+
+        expect(join.value).toBe("Join Game");
+        expect(create.value).toBe("Create Game");
+
+    });
+
 });

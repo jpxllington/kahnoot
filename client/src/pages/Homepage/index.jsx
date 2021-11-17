@@ -21,8 +21,8 @@ export const Homepage = () => {
             <form onSubmit={(e)=>handleSubmit(e)}>
                 <input type="text" name="username" id="username" className="username" placeholder="Enter a username"/>
                 <input type='text' name='gameID' id='gameID' className="gameID" placeholder="Enter a game ID"/>
-                <input type="submit" value="Join Game" />
-                <input type="submit" value="Create Game" />
+                <input type="submit" role="join" value="Join Game" />
+                <input type="submit" role="create" value="Create Game" />
             </form>
         </>
 

@@ -9,8 +9,8 @@ describe('Lobby', () => {
 
     test('it renders', () => {
         render(<Lobby />)
-        const heading = screen.getByRole('button')
-        expect(heading.textContent).toContain('Go to quiz')
+        const button = screen.getByRole('button')
+        expect(button.textContent).toContain('Go to quiz')
 
     });
 
