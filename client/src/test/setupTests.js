@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware, combineReducers } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { quizReducer } from "../reducers";
 

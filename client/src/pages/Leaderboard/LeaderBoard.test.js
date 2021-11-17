@@ -50,8 +50,8 @@ describe('Leaderboard', () => {
         expect(category.value).toBe("Topic");
         expect(tableInfo.textContent).toContain('Username');
 
-        const topic = screen.getByText("General Knowledge");
-        userEvent.click(topic);
+        // const topic = screen.getByText("General Knowledge");
+        userEvent.click(category);
         expect(category.value).toBe("General Knowledge");
 
     });
@@ -69,7 +69,7 @@ describe('Leaderboard', () => {
         console.log( difficulty.value);
         const playerInfo =  await screen.findByRole('display-scores')
         console.log(playerInfo);
-        expect(playerInfo[1].textcontent).toBe('Test Story 1')
+        expect(playerInfo[1].textcontent).toBe('Silver')
     
 
     });
