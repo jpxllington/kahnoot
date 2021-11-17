@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-export const HomePage = () => {
+
+export const Homepage = () => {
     let history = useHistory();
     const handleSubmit =(e) =>{
         e.preventDefault();
