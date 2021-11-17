@@ -6,11 +6,11 @@ import { act } from 'react-dom/test-utils';
 jest.mock('axios');
 const playersData = {
     data: [
-        { "id": "1", "username": "Bob", "category": "General Knowledge", "difficulty": "Easy", "score": 9 },
-        { "id": "2", "username": "Kelly", "category": "General Knowledge", "difficulty": "Easy", "score": 6 },
-        { "id": "3", "username": "Emma", "category": "General Knowledge", "difficulty": "Easy", "score": 7 },
-        { "id": "4", "username": "Alex", "category": "History", "difficulty": "Easy", "score": 4 },
-        { "id": "5", "username": "Tom", "category": "Sports", "difficulty": "Easy", "score": 10 }
+        { "id": "1", "username": "Bob", "category": "General Knowledge", "difficulty": "easy", "score": 9 },
+        { "id": "2", "username": "Kelly", "category": "General Knowledge", "difficulty": "easy", "score": 6 },
+        { "id": "3", "username": "Emma", "category": "General Knowledge", "difficulty": "easy", "score": 7 },
+        { "id": "4", "username": "Alex", "category": "History", "difficulty": "easy", "score": 4 },
+        { "id": "5", "username": "Tom", "category": "Sports", "difficulty": "easy", "score": 10 }
     ]
 }
 
@@ -95,13 +95,13 @@ describe('Leaderboard part 2', () => {
             expect(options[2].selected).toBeTruthy();
             expect(options[3].selected).toBeFalsy();
             expect(options[4].selected).toBeFalsy();
-        })
+        }) 
     })
 
     test('Simulates difficualty selection', async () => {
         const { getByTestId, getAllByTestId } = render(<Leaderboard />);
         axios.get.mockResolvedValue({ ...playersData })
-        fireEvent.change(getByTestId('select-difficulty'), { target: { value: "Medium" } })
+        fireEvent.change(getByTestId('select-difficulty'), { target: { value: "medium" } })
         let options = getAllByTestId('select-difficulty-option')
         await waitFor(() => {
             expect(options[0].selected).toBeFalsy();

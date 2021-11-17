@@ -2,6 +2,6 @@ import React from 'react';
 
 export const Question = ({ question }) => {
     return (
-        <p>{question}</p>
+        <p role="question">{question}</p>
     )
 }

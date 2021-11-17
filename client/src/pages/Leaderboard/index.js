@@ -11,7 +11,7 @@ export const Leaderboard = () => {
     const [difficulty, setDifficulty] = useState('');
     const [data, setData] = useState([]);
 
-    const deficultis = ['Easy', 'Medium', 'Hard'];
+    const deficultis = ['easy', 'medium', 'hard'];
     const categories = ['Sports', 'History', 'General Knowledge', 'Entertainment', 'Celeberties', 'Art', 'Politics', 'Geography'];
 
     // use this to fetch the data from storage

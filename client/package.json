@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "jest --watch --setupFilesAfterEnv ./src/test/setupTests.js --env=jsdom",
-    "coverage": "jest --setupFilesAfterEnv ./src/test/setupTests.js --env=jsdom --coverage --watchAll=false",
+    "coverage": "jest --setupFilesAfterEnv ./src/test/setupTests.js --coverage --env=jsdom --watchAll=false",
     "dev": "webpack serve --mode development --config config/webpack.dev.config.js",
     "dev2": "webpack serve --mode development --config config/webpack.dev.config.js --port 5678",
     "build": "webpack --config config/webpack.prod.config.js",
