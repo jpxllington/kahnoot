@@ -72,8 +72,6 @@ describe('Leaderboard', () => {
 
     })
 
-
-
     test('it makes a request to the api on load and renders players data', async () => {
 
         axios.get.mockResolvedValue({ data: palyersData });
