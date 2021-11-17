@@ -7,7 +7,6 @@ import './style.css';
 export const App = () => {
     return (
         <>
-<<<<<<< HEAD
             <Header />
             <main>
                 <Switch>
@@ -35,32 +34,6 @@ export const App = () => {
                 </Switch>
             </main>
             <Footer />
-=======
-            <Header/>
-            <Switch>
-                <Route exact path="/">
-                    <Pages.Homepage />
-                </Route>
-                <Route path="/quiz">
-                    <Pages.QuizPage />
-                </Route>
-                <Route path="/results">
-                    <Pages.Results />
-                </Route>
-                <Route path="/create">
-                    <Pages.CreateQuiz/>
-                </Route>
-                <Route path="/lobby">
-                    <Pages.Lobby/>
-                </Route>
-                <Route path="/leaderboard">
-                    <Pages.Leaderboard/>
-                </Route>
-                <Route>
-                    <h1>Page doesn't exist</h1>
-                </Route>
-            </Switch>
->>>>>>> dev/golnar
         </>
     )
 };
