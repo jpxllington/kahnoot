@@ -1,5 +1,5 @@
 const server = require("http").createServer();
-
+import {Game} from "./model"
 const io = require("socket.io")(server, {
     cors: {
         origin: "*",
@@ -7,24 +7,24 @@ const io = require("socket.io")(server, {
     }
 });
 
-const rooms = [
-    {
-        id:"",
-        players: [{username:"", id:1},2,3,4]
-    },
-];
+const game = new Game();
 
 io.on("connection", socket => {
-    socket.on("create", (roomID, username) => {
-        socket.join(roomID);
-
-        const roomIndex = rooms.findIndex(r => r.id === roomID);
-        if(roomIndex===-1){
-            rooms.push({id: roomID, players:[{username: username ,id:socket.id}]})
-        } else {
-            rooms[roomIndex]['players'].push({username:username, id:socket.id})
-        }
-        io.to(roomID).emit("players",rooms.slice(roomIndex, roomIndex + 1||rooms.length))
+    socket.on("create", (roomID, hostName, apiData) =>{
+        game.addGame(roomID, hostName, apiData);
+        socket.join(hostName);
+        game.addPlayer(username,roomName);
+    })
+       
+    socket.on("joinRoom", (username, roomName) => {
+        game.addPlayer(username, roomName);
+        socket.join(roomName);
+        socket.emit(`${username} has joined`)
+        let currentGame = game.getRoom(roomName)
+        io.to(currentGame.host).emit("playerConnected", {
+            name: username, 
+            score:0
+        })
     })
 
     socket.on("disconnect", ()=>{
