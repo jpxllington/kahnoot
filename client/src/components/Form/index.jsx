@@ -18,12 +18,12 @@ export const CreateForm = () => {
     const dispatch = useDispatch();
     let username = useSelector(state=>state.username)
     let roomName = useSelector(state=>state.roomName)
-    let apiData = useSelector(state=>state.apiData)
+
     const handleGenQuiz = async (e) => {
         e.preventDefault();
         await dispatch(fetchQuiz(amount, category, difficulty))
         // apiData = await JSON.stringify(apiData)
-        socket.emit('create', roomName,username,JSON.stringify(apiData), (res) => {
+        await socket.emit('create', roomName,username, (res) => {
             if(res.message==="game successfully created"){
                 history.push('/lobby')
             }

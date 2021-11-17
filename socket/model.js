@@ -7,12 +7,12 @@ class Game{
         this.players = [];
     }
 
-    addGame(username,roomName, ApiData){
+    addGame(username,roomName){
         let game = {
             host:username,
             room:roomName,
             players:[],
-            ApiData: ApiData
+            apiData: []
         }
         this.games.push(game);
         console.log(this.games);
@@ -24,9 +24,9 @@ class Game{
             username:username, 
             score: 0
         }
-
-        let game = this.getRoom(roomName);
+        console.log(player);
         try{
+            let game = this.getRoom(roomName);
             game.players.push(player)
         } catch(err){
             console.warn(err);
@@ -35,7 +35,7 @@ class Game{
 
     getRoom(roomName){
         try{
-            const currentGame = this.game.find(game=>game.room===roomName)
+            const currentGame = this.games.find(game=>game.room===roomName)
             return currentGame;
 
         }catch(err){
@@ -77,6 +77,15 @@ class Game{
             return
         }
     }
+
+    addData(apiData,roomName){
+        console.log(roomName);
+        let room = this.getRoom(roomName);
+        console.log(room);
+        room.apiData = apiData;
+        return room
+    }
+
 }
 
 module.exports = Game;
