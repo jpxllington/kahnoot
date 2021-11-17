@@ -5,8 +5,7 @@ import { shallow } from 'enzyme';
 import axios from 'axios';
 jest.mock('axios');
 import 'core-js';
-import '@types/node';
-import setImmediate from 'setimmediate';
+import setimmediate from 'setimmediate';
 
 describe('HomePage', () => {
 

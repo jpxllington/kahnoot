@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-import React, {useEffect} from "react";
-=======
 import React, { useEffect } from "react";
->>>>>>> staging
 import { useHistory } from "react-router"
 import { socket } from "../../socket";
 import { useSelector, useDispatch } from "react-redux";
 import { storeQuestions } from "../../actions";
-<<<<<<< HEAD
-import { useHistory } from "react-router";
 
-=======
->>>>>>> staging
 
 export const Lobby = () => {
     let history = useHistory();
