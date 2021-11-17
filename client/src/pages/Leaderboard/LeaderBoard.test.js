@@ -1,5 +1,5 @@
 import {  Leaderboard } from '.';
-import { render, screen } from '@testing-library/react';
+import { render, screen , fireEvent} from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { shallow } from 'enzyme';
 import axios from 'axios';
@@ -38,24 +38,39 @@ describe('Leaderboard', () => {
         expect(tableInfo.textContent).toContain('Username');
     });
 
-    test('Changing category and deficaulty',  () => {
+    // test('Changing category and deficaulty',  () => {
+    //     render(<Leaderboard />)
+    //     const tableInfo=screen.getByRole('display-scores');
+    //     const category = screen.getByRole('selectCategory');
+    //     const difficulty = screen.getByRole("selectDifficulty");
+    //     expect(difficulty.value).toBe("Difficulty");
+    //     expect(category.value).toBe("Topic");
+    //     expect(tableInfo.textContent).toContain('Username');
+    //     const generalKnowledge = screen.getByText("General Knowledge");
+    //     userEvent.click(generalKnowledge);
+    //     expect(category.value).toBe("General Knowledge");
+    // });
 
+    test('Simulates topic selection', () => {
+        const { getByTestId, getAllByTestId } = render(<Leaderboard />);
+        fireEvent.change(getByTestId('select-topic'), { target: { value: "General Knowledge" } })
+        let options = getAllByTestId('select-topic-option')
+        expect(options[0].selected).toBeFalsy();
+        expect(options[1].selected).toBeFalsy();
+        expect(options[2].selected).toBeTruthy();
+        expect(options[3].selected).toBeFalsy();
+        expect(options[4].selected).toBeFalsy();
+    })
 
-        render(<Leaderboard />)
-        const tableInfo=screen.getByRole('display-scoresq');
-        const category = screen.getByRole('selectCategory');
-        const difficulty = screen.getByRole("selectDifficulty");
-        
-        expect(difficulty.value).toBe("Difficulty");
-        expect(category.value).toBe("Topic");
-        expect(tableInfo.textContent).toContain('Username');
+    test('Simulates difficualty selection', () => {
+        const { getByTestId, getAllByTestId } = render(<Leaderboard />);
+        fireEvent.change(getByTestId('select-difficulty'), { target: { value: "Medium" } })
+        let options = getAllByTestId('select-difficulty-option')
+        expect(options[0].selected).toBeFalsy();
+        expect(options[1].selected).toBeTruthy();
+        expect(options[2].selected).toBeFalsy();
 
-        const topic = screen.getByText("General Knowledge");
-        userEvent.click(topic);
-        expect(category.value).toBe("General Knowledge");
-
-    });
-
+    })
 
     test('it makes a request to the api on load and renders players data', async () => {
 
@@ -69,7 +84,7 @@ describe('Leaderboard', () => {
         console.log( difficulty.value);
         const playerInfo =  await screen.findByRole('display-scores')
         console.log(playerInfo);
-        expect(playerInfo[1].textcontent).toBe('Test Story 1')
+        expect(playerInfo[1].textcontent).toBe('Silver')
     
 
     });

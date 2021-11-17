@@ -1,8 +1,8 @@
-export { HomePage } from './homepage'
+export { Homepage } from './Homepage'
 export { QuizPage } from './quizPage'
 export { Leaderboard } from './Leaderboard'; 
-export { CreateQuiz } from './createQuiz';
-export { Lobby } from './lobby';
+export { CreateQuiz } from './CreateQuiz';
+export { Lobby } from './Lobby';
 export { Results } from './Results'
 
 

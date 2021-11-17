@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { render, fireEvent } from '@testing-library/react';
 import axios from 'axios';
 import './style.css';
 
@@ -56,14 +57,14 @@ export const Leaderboard = () => {
                     <label htmlFor="testTopic">Test topic</label>
                     <label htmlFor="difficulty">Difficaulty</label>
                     <br></br>
-                    <select name="testTopic" id="testTopic" role="selectCategory"  onChange={(e) => setTopic(e.target.value)}>
+                    <select data-testid="select-topic" name="testTopic" id="testTopic" role="selectCategory"  onChange={(e) => setTopic(e.target.value)}>
                         <option key={0} >Topic</option>
-                        {categories.map((d,i) => <option key={i}> { d } </option>)}
+                        {categories.map((d,i) => <option data-testid="select-topic-option" key={i} > { d } </option>)}
                     </select>
                     
-                    <select name="difficulty" id="difficulty" role="selectDifficulty" onChange={(e)=> setDifficulty(e.target.value)}>
+                    <select data-testid="select-difficulty" name="difficulty" id="difficulty" role="selectDifficulty"  onChange={(e)=> setDifficulty(e.target.value)}>
                         <option key={0}>Difficulty</option>
-                        {deficultis.map( (x,i) => <option key={i}> { x } </option>)})
+                        {deficultis.map( (x,i) => <option data-testid="select-difficulty-option" key={i}> { x } </option>)})
                     </select>
                 </div>
             </form>
