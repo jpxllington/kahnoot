@@ -42,7 +42,7 @@ describe('Leaderboard', () => {
 
 
         render(<Leaderboard />)
-        const tableInfo=screen.getByRole('display-scoresq');
+        const tableInfo=screen.getByRole('display-scores');
         const category = screen.getByRole('selectCategory');
         const difficulty = screen.getByRole("selectDifficulty");
         

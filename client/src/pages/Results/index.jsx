@@ -21,7 +21,7 @@ export const Results = () => {
 
     return (
         <div>
-            <p>you scored {score}/{currentQ + 1}</p>
+            <p>You scored {score}/{currentQ + 1}</p>
             <Link to='/'><button>Home</button></Link>
             {renderAnswers()}
         </div>
