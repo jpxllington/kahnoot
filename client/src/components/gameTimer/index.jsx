@@ -19,7 +19,7 @@ export const GameTimer = ({ duration, timerDone }) => {
 
 
     return (
-        <div className="countDownTimer" style={style}>
+        <div role="timer" className="countDownTimer" style={style}>
 
         </div>
     )
