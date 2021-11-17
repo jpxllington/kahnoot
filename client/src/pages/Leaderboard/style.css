@@ -17,6 +17,10 @@ label{
     border-spacing: 150px 0;
 }
 
+/* th{
+    background-color: darkgoldenrod;
+} */
+
 td {
     padding: 10px 0;
   }
