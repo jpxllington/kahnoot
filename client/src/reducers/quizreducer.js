@@ -4,7 +4,9 @@ const init = {
     currentAnswer: "",
     finalAnswers: [],
     currentQ: 0,
-    score: 0
+    score: 0,
+    roomName:"",
+    username: "",
 }
 
 export const quizReducer = (state = init, action) => {
@@ -39,6 +41,12 @@ export const quizReducer = (state = init, action) => {
                 ...state,
                 finalAnswers: [...state.finalAnswers, state.currentAnswer],
                 score: (!!state.currentAnswer && state.currentAnswer === state.correctAnswer) ? state.score + 1 : state.score
+            };
+        case "SET_ROOM":
+            return {
+                ...state,
+                roomName:action.payload.roomName,
+                username:action.payload.username
             };
         default:
             return state;
