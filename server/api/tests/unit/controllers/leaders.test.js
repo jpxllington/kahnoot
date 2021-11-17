@@ -31,7 +31,7 @@ describe('leaders controller', () => {
                 difficulty: 'Easy', 
                 score: 5
             }
-            jest.spyOn(Leaderboard, 'all', 'get')
+            jest.spyOn(Leaderboard, 'show')
                 .mockResolvedValue(new Leaderboard(testLeaderboard));
                 
             const mockReq = { params: { id: 1 } }

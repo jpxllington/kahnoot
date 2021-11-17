@@ -23,9 +23,10 @@ services:
     container_name: kahnoot_test_db
     volumes:
       - "test_db:/var/lib/postgresql/data"
-      - "./db:/docker-entrypoint-initdb.d/:ro"
+      # - "./db:/docker-entrypoint-initdb.d/:ro"
     environment: 
-      - POSTGRES_DB=leaderboard
+      - POSTGRES_DB=leaderboard_test
+      - POSTGRES_USER=kahnoot
       - POSTGRES_PASSWORD=five
 volumes:
   test_db:
