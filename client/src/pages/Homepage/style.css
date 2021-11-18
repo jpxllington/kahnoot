@@ -51,4 +51,11 @@
 input {
     padding-left: 10px;
 }
+.errorMessage {
+    position: absolute;
+    
+    transform: translate(26vw, 29vh);
+    font-size: 1.5em;
+    
+}
 
