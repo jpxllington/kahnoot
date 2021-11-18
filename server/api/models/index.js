@@ -35,22 +35,6 @@ class Leaderboard {
 
     }
 
-    // static create(quizData){
-    //     return new Promise (async (resolve, reject) => {
-    //         try {
-    //             const {name, difficulty, topic, score } = quizData;
-    //             let newQuizData = await db.query ( `INSERT INTO leaderboard (name, difficulty, topic, score)
-    //                                                   VALUES ($1, $2, $3, $4)
-    //                                                   RETURNING *;`, [name, difficulty, topic, score]) 
-    //             let result = new Leaderboard (newQuizData.rows[0])
-    //             resolve (result);
-    //         } catch (err) {
-    //             reject('Error creating this entry');
-    //         }
-    //     })
-
-    // }
-
     static create(data) {
         const { name, difficulty, topic, score } = data;
         return new Promise(async (resolve, reject) => {

@@ -53,9 +53,10 @@ describe('leaders controller', () => {
     describe('create', () => {
         test('it returns a new leaderboard entry with a 201 status code', async () => {
             let testLeaderboard = {
-                id: 2, name: 'Test Name2', 
-                topic: 'Test topic2',
-                difficulty: 'Medium', 
+                id: 1,
+                name: 'Test Name', 
+                topic: 'Test topic',
+                difficulty: 'medium', 
                 score: 7
             }
             jest.spyOn(Leaderboard, 'create')
@@ -69,9 +70,10 @@ describe('leaders controller', () => {
 
         test('it returns an error with a 422 status code', async () => {
             let testLeaderboard = {
-                id: 2, name: 'Test Name2', 
-                topic: 'Test topic2',
-                difficulty: 'Medium', 
+                id: 1,
+                name: 'Test Name', 
+                topic: 'Test topic',
+                difficulty: 'medium', 
                 score: 7 
             }
             jest.spyOn(Leaderboard, 'create')
@@ -80,7 +82,7 @@ describe('leaders controller', () => {
             const mockReq = { body: testLeaderboard }
             await leaderController.create(mockReq, mockRes);
             expect(mockStatus).toHaveBeenCalledWith(422);
-            expect(mockJson).toHaveBeenCalledWith({err: 'Error creating entry'});
+            expect(mockJson).toHaveBeenCalledWith({err: "Error creating entry"});
         });
     });
 })

@@ -20,11 +20,10 @@ async function show(req, res) {
 
 async function create (req, res) {
     try {
-        const leaderboard = await Leaderboard.create(...req.body);
+        const leaderboard = await Leaderboard.create({...req.body});
         res.status(201).json(leaderboard)
     } catch (err) {
         res.status(422).json({err})
     }
 }
-
 module.exports = { index, show, create }
