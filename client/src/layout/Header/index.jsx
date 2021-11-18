@@ -1,14 +1,14 @@
 import React from 'react';
-
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
 
 export const Header = () => {
+    let history = useHistory();
 
     return (
-        <header>
-            <Link to={"./"}>Home</Link>
+        <header role="header">
+            <button onClick={() => history.push("/")}>Home</button>
             <img src="" alt="logo" />
-            <Link to={"./leaderboard"}>View Leaderboards</Link>
+            <button onClick={() => history.push('/leaderboard')}>View Leaderboards</button>
         </header>
     )
 }

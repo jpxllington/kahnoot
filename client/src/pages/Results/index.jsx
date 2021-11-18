@@ -1,25 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux';
 import he from 'he';
 import './style.css'
 
 export const Results = () => {
     // Get correct answers of quiz
-    const apiData = useSelector(state => state.apiData);
+    const apiData = useSelector(state => state.quiz.apiData);
     const correctAnswers = apiData.map(a => he.decode(a.correct_answer));
     // Get current user's answers
-    const finalAnswers = useSelector(state => state.finalAnswers);
+    const finalAnswers = useSelector(state => state.quiz.finalAnswers);
     // Get all player usernames, scores
-    const score = useSelector(state => state.score);
-    const players = [{ username: "player", score }]
-
-    // Hard-coded to see how page looks without doing quiz
-    // const finalAnswers = ["test1", "test2", "test3"];
-    // const correctAnswers = ["test1", "test2", "test3"];
-    // const players = [
-    //     { username: "PIngu", score: 2 },
-    //     { username: "Jim", score: 0 }
-    // ];
+    const players = useSelector(state => state.user.players);
 
     const renderPlayers = () => players.map((p, i) => {
         return (

@@ -4,8 +4,10 @@ import { userEvent } from '@testing-library/user-event';
 import { shallow } from 'enzyme';
 import axios from 'axios';
 jest.mock('axios');
+import 'core-js';
+import setimmediate from 'setimmediate';
 
-describe('Homepage', () => {
+describe('HomePage', () => {
 
     beforeEach(() => {
         renderWithProviders(<HomePage />)
