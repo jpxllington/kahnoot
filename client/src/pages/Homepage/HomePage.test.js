@@ -35,13 +35,8 @@ describe('HomePage', () => {
     });
 
     test("gets the username from user", () => {
-        const gameID = screen.getByRole('gameID')
         const username = screen.getByRole('username')
-        const join=screen.getByRole("join")
-        userEvent.type(gameID, "room_1{enter}")
-        expect(gameID.value).toBe("room_1");
         userEvent.type(username, "Bob{enter}")
-        userEvent.click(join);
         expect(username.value).toBe("Bob");
     });
 
@@ -50,5 +45,11 @@ describe('HomePage', () => {
         userEvent.type(gameID, "room_1{enter}")
         expect(gameID.value).toBe("room_1");
     });
+
+    // test("set submitter to Join Game when press join button", () => {
+    //     const join = screen.getByRole('join');
+    //     userEvent.click(join)
+    //     expect(submitter).toBe("Join Game");
+    // });
 
 });
