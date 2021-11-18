@@ -60,9 +60,10 @@ export const Lobby = () => {
         dispatch(addPlayers(players));
     })
 
+
     return (
         <>
-            {players.map((player) => <PlayerCard role="playerCard" key={players.indexOf(player)} player={player} />)}
+            {players.map((player) => <PlayerCard role="playerCard" key={players.indexOf(player)} username={player.username} />)}
             { hostyBOi ? <button role="quiz" onClick={handleClick}>Go to quiz</button> : <p role="quiz">Waiting for host to start quiz</p>}
 
         </>
