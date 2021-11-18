@@ -7,7 +7,7 @@ export const Header = () => {
     return (
         <header role="header">
             <button onClick={() => history.push("/")}>Home</button>
-            <img src="" alt="logo" />
+            <img role="image" src="" alt="logo" />
             <button onClick={() => history.push('/leaderboard')}>View Leaderboards</button>
         </header>
     )

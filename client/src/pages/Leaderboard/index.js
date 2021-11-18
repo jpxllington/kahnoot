@@ -75,9 +75,13 @@ export const Leaderboard = () => {
                         {categories.map((d, i) => <option data-testid="select-topic-option" key={i} > {d} </option>)}
                     </select>
 
-                    <select data-testid="select-difficulty" name="difficulty" id="difficulty" role="selectDifficulty" value={difficulty} onChange={(e) => setDifficulty(e.target.value)}>
-                        <option key={0}>Difficulty</option>
-                        {difficulties.map((x, i) => <option data-testid="select-difficulty-option" key={i}> {x} </option>)})
+                    <select data-testid="select-difficulty" name="difficulty" id="difficulty" role="selectDifficulty" onChange={(e) => setDifficulty(e.target.value)}>
+                        <option data-testid="select-difficulty-option" value='difficulty'>Difficulty</option>
+                        <option data-testid="select-difficulty-option" value='easy'>Easy</option>
+                        <option data-testid="select-difficulty-option" value='medium'>Medium</option>
+                        <option data-testid="select-difficulty-option" value='hard'>Hard</option>
+                        {/* {deficultis.map((x, i) => <option data-testid="select-difficulty-option" key={i}> {x} </option>)}) */}
+
                     </select>
                 </div>
             </form>

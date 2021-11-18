@@ -19,18 +19,6 @@ const WrapProviders = ({ children }) => {
 
 const renderWithProviders = (ui) => render(ui, { wrapper: WrapProviders })
 
-// import axios from "axios";
-// jest.mock("axios");
-
-// axios.get.mockResolvedValue({
-//   data: [
-//     {
-//       correctAnswer: "Silver",
-//       currentAnswer: "Gold",
-//     },
-//   ],
-// });
-
 global.renderWithProviders = renderWithProviders;
 global.React = React;
 global.render = render;
