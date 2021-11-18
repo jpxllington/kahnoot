@@ -10,9 +10,9 @@ import {socket} from "../../socket"
 
 export const QuizPage = () => {
 
-    const [answers, setAnswers] = useState([])
-    const [question, setQuestion] = useState("")
-    const players = useSelector(state => state.user.players)
+    const [answers, setAnswers] = useState([]);
+    const [question, setQuestion] = useState("");
+    const players = useSelector(state => state.user.players);
     let currentQ = useSelector(state => state.quiz.currentQ);
     const apiData = useSelector(state => state.quiz.apiData);
 
@@ -70,6 +70,7 @@ export const QuizPage = () => {
     return (
         <>
             {!!players && players.map((player) => <PlayerCard key={players.indexOf(player)} username={player.username} />)}
+
             <Question question={question} />
             <Quiz answers={answers} authenticate={authenticate} timerDone={timerDone} />
         </>

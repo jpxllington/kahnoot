@@ -9,9 +9,14 @@ describe('Lobby', () => {
 
 
     test('it renders', () => {
-        const button = screen.getByRole('button')
-        expect(button.textContent).toContain('Go to quiz')
+        const quiz = screen.getByRole('quiz');
+        expect(quiz.textContent).toContain('quiz');
 
     });
+
+    // test('it calls playerCard' , () => {
+    //     const playerCard = screen.getByRole('playerCard');
+    //     expect(playerCard).toBeInTheDocument();
+    // })
 
 });
