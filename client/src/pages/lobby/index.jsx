@@ -21,13 +21,14 @@ export const Lobby = () => {
     console.log(players);
     console.log(apiData);
     const handleClick = () => {
-        console.log("button pressed");
-        socket.emit("game-start-request", (roomName,res)=>{
+        socket.emit("game-start-request", roomName,(res)=>{
 
+            console.log("button pressed");
         })
     }
 
-    socket.on("game-start", (cb)=>{
+    socket.on("game-start", ()=>{
+        console.log("game started");
         history.push("/quiz")
     })
 

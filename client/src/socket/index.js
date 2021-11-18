@@ -11,5 +11,6 @@
 // })
 
 const io = require("socket.io-client");
-export const socket = io("https://kahnoot-socket-server.herokuapp.com/", {
+export const socket = io("http://localhost:1234", {
     extraHeaders: {    "my-custom-header": "abcd"  }});
+    // https://kahnoot-socket-server.herokuapp.com/
