@@ -4,10 +4,13 @@ import he from 'he';
 import './style.css'
 import { socket } from '../../socket';
 import { addPlayers } from "../../actions"
-
+import axios from "axios";
+import {db_URL} from "../../actions";
+import { useHistory } from "react-router";
 
 export const Results = () => {
     let dispatch = useDispatch();
+    let history = useHistory();
     // Get correct answers of quiz
     const apiData = useSelector(state => state.quiz.apiData);
     const correctAnswers = apiData.map(a => he.decode(a.correct_answer));
@@ -19,9 +22,29 @@ export const Results = () => {
     const score = useSelector(state => state.quiz.score);
     const roomName = useSelector(state => state.quiz.roomName);
     const username = useSelector(state => state.quiz.username);
-    
+
+
     useEffect(() => {
-        socket.emit("sendScore", score, roomName, username)
+        if (!apiData.length){
+            history.push("/")
+        } else{
+
+            let difficulty = apiData[0].difficulty;
+            let category = apiData[0].category;
+            socket.emit("sendScore", score, roomName, username)
+            const sendtoDB = async() => {
+                let res = await axios.post(`${db_URL}/leaderboard`, {
+                    name:username,
+                    difficulty:difficulty,
+                    topic:category,
+                    score:score,
+                })
+                console.log(res);
+    
+            }
+    
+            sendtoDB()
+        }
     },[])
 
     socket.on("shareScore", (players) => {
