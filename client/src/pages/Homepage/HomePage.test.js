@@ -1,15 +1,6 @@
 import { HomePage } from '.';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import axios from 'axios';
-jest.mock('axios');
-
-const handleSubmit = (e) => { 
-    let room = e.target.gameID.value;
-    let username = e.target.username.value;
-    dispatch(setRoom(username, room))
-}
-
 
 
 describe('HomePage', () => {
@@ -44,19 +35,21 @@ describe('HomePage', () => {
     });
 
     test("gets the username from user", () => {
-        jest.resetAllMocks();
-        axios.get.mockResolvedValue({handleSubmit})
         const username = screen.getByRole('username')
         userEvent.type(username, "Bob{enter}")
         expect(username.value).toBe("Bob");
     });
 
     test("gets the username from user", () => {
-        jest.resetAllMocks();
-        axios.get.mockResolvedValue({handleSubmit})
         const gameID = screen.getByRole('gameID')
         userEvent.type(gameID, "room_1{enter}")
         expect(gameID.value).toBe("room_1");
     });
+
+    // test("set submitter to Join Game when press join button", () => {
+    //     const join = screen.getByRole('join');
+    //     userEvent.click(join)
+    //     expect(submitter).toBe("Join Game");
+    // });
 
 });
