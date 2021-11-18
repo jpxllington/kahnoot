@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { socket } from '../../socket';
 import { useDispatch } from "react-redux"
@@ -18,6 +18,11 @@ export const HomePage = () => {
         setFormData({ ...formData, [name]: value });
     };
 
+    useEffect(()=>{
+        socket.connect();
+
+    },[])
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(submitter);
@@ -26,8 +31,9 @@ export const HomePage = () => {
         dispatch(setRoom(username, room))
         console.log(room);
         if (submitter === "Join Game") {
+            console.log("Join game has been pressed");
             socket.emit("check-room", room, (res) => {
-                console.log(res);
+                console.log(`Res: ${res}`);
                 if (res.roomExists) {
                     setMessage("Joining Game...")
                     setTimeout(() => {
@@ -41,7 +47,7 @@ export const HomePage = () => {
                 }
 
             })
-            socket.on("check-room", console.log("room checked"))
+            // socket.on("check-room", console.log("room checked"))
         } else {
             socket.emit("check-room", room, (res) => {
                 console.log(res);
