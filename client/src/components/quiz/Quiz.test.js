@@ -5,7 +5,7 @@ import { render, screen } from "@testing-library/react";
 describe("Quiz", () => {
     
     test("it renders quiz", () => {
-            render(<Quiz />)
+            render(<Quiz answers={['Silver','Gold','Bronz']}/>)
             const timer = screen.getByRole("timer");
             expect(timer).toBeInTheDocument();
 

@@ -15,13 +15,26 @@ export const QuizPage = () => {
     const players = useSelector(state => state.user.players);
     let currentQ = useSelector(state => state.quiz.currentQ);
     const apiData = useSelector(state => state.quiz.apiData);
-
+    const roomName = useSelector(state => state.quiz.roomName)
     const history = useHistory();
     const dispatch = useDispatch();
+
+    console.log("you reached quiz");
 
     const authenticate = (chosenAnswer) => {
         dispatch(setCurrent(chosenAnswer));
     }
+
+
+    useEffect(()=>{
+        if(!roomName){
+            history.push("/")
+        } else {
+            socket.on("updatedPlayers", (players) => {
+                dispatch(addPlayers(players));
+            })
+        }
+    },[])
 
     function shuffle(array) {
         let currentIndex = array.length, randomIndex;
@@ -50,22 +63,23 @@ export const QuizPage = () => {
     }
 
     useEffect(() => {
-        const recievesQuestionData = (data) => {
-            let question = he.decode(data.question)
-            let answers = data.incorrect_answers.map(a => ({ answer: he.decode(a), correct: false }))
-            answers.push({ answer: he.decode(data.correct_answer), correct: true })
-            let shuffled = shuffle(answers);
-            setAnswers(shuffled);
-            setQuestion(question);
-            dispatch(setCorrect(he.decode(data.correct_answer)))
-            dispatch(setCurrent(""))
+        if (roomName){
+            const recievesQuestionData = (data) => {
+                let question = he.decode(data.question)
+                let answers = data.incorrect_answers.map(a => ({ answer: he.decode(a), correct: false }))
+                answers.push({ answer: he.decode(data.correct_answer), correct: true })
+                let shuffled = shuffle(answers);
+                setAnswers(shuffled);
+                setQuestion(question);
+                dispatch(setCorrect(he.decode(data.correct_answer)))
+                dispatch(setCurrent(""))
+            }
+            recievesQuestionData(apiData[currentQ])
+
         }
-        recievesQuestionData(apiData[currentQ])
     }, [currentQ])
 
-    socket.on("updatedPlayers", (players) => {
-        dispatch(addPlayers(players));
-    })
+   
 
     return (
         <>

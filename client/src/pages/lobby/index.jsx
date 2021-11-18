@@ -16,8 +16,7 @@ export const Lobby = () => {
     const [hostyBOi, setHostyBOi] = useState(false)
     const room = useSelector(state => state.user.room)
     const players = useSelector(state => state.user.players)
-    console.log(players);
-    console.log(apiData);
+    
     const handleClick = () => {
         socket.emit("game-start-request", roomName,(res)=>{
 
@@ -60,9 +59,10 @@ export const Lobby = () => {
         dispatch(addPlayers(players));
     })
 
+
     return (
         <>
-            {players.map((player) => <PlayerCard role="playerCard" key={players.indexOf(player)} player={player} />)}
+            {players.map((player) => <PlayerCard role="playerCard" key={players.indexOf(player)} username={player.username} />)}
             { hostyBOi ? <button role="quiz" onClick={handleClick}>Go to quiz</button> : <p role="quiz">Waiting for host to start quiz</p>}
 
         </>
