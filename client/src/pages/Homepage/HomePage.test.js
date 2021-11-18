@@ -43,20 +43,20 @@ describe('HomePage', () => {
         expect(form).toBeInTheDocument();
     });
 
-    test("gets the username from user", () => {
-        jest.resetAllMocks();
-        axios.get.mockResolvedValue({handleSubmit})
-        const username = screen.getByRole('username')
-        userEvent.type(username, "Bob{enter}")
-        expect(username.value).toBe("Bob");
-    });
+    // test("gets the username from user", () => {
+    //     jest.resetAllMocks();
+    //     axios.get.mockResolvedValue({handleSubmit})
+    //     const username = screen.getByRole('username')
+    //     userEvent.type(username, "Bob{enter}")
+    //     expect(username.value).toBe("Bob");
+    // });
 
-    test("gets the username from user", () => {
-        jest.resetAllMocks();
-        axios.get.mockResolvedValue({handleSubmit})
-        const gameID = screen.getByRole('gameID')
-        userEvent.type(gameID, "room_1{enter}")
-        expect(gameID.value).toBe("room_1");
-    });
+    // test("gets the username from user", () => {
+    //     jest.resetAllMocks();
+    //     axios.get.mockResolvedValue({handleSubmit})
+    //     const gameID = screen.getByRole('gameID')
+    //     userEvent.type(gameID, "room_1{enter}")
+    //     expect(gameID.value).toBe("room_1");
+    // });
 
 });
