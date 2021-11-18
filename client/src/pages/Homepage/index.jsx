@@ -52,11 +52,11 @@ export const HomePage = () => {
 
     return (
         <div id="homepage">
-            <div id="kahnoot">
+            {/* <div id="kahnoot">
                 <img id="title" src={Title} />
-            </div>
+            </div> */}
 
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => handleSubmit(e)} id='frontPageForm'>
                 <input type="text" name="username" id="username" required className="username" placeholder="Enter a username" />
                 <input type='text' name='gameID' id='gameID' required className="gameID" placeholder="Enter a game ID" />
                 <input type="submit" role="join" value="Join Game" />

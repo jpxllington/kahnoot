@@ -1,27 +1,47 @@
 Header {
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     left: 0;
     margin: 0;
-    max-height: 80px;
+    padding: 0;
+    height: 15vh;
     width: 100%;
     border: 1px solid #000;
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.headerLogoButtons {
+    position: absolute;
+    left: 0;
+    max-width: 30%;
+    display: flex;
+    max-height: 10vh;
+    align-items: center;
+   
 }
 
-button {
-    text-decoration: none;
-    border-bottom: 1px solid #000;
-}
 #logo {
     border: 2px solid green;
-    margin-right: 10px;
-    max-height: 100px;
-    max-width: 100px;
+    max-height: 92.51px;
+    max-width: 200px;
     padding: 0px;
+    
 }
 .headerButtons {
     margin-left: 10px; 
-    height: 50px;
-    width: 100px;
+    padding: 0px 10px 0px 10px;
+    min-height: 50px;
+    
+    
+}
+
+#kahnoot {
+    /* display: flex; */
+    align-self: center;
+    justify-self: center;
+}
+
+#title {
+    width: 500px;
 }

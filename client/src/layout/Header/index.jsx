@@ -3,16 +3,22 @@ import './style.css'
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
 import Logo from '../../../assets/pinguLogo.jpeg'
-
+import Title from '../../../assets/kahnootLogoColored_transparent.png';
 
 export const Header = () => {
     let history = useHistory();
 
     return (
         <header role="header">
-            <img src={Logo} alt="logo" id='logo' />
-            <button className='headerButtons' onClick={() => history.push("/")}>Home</button>
-            <button className='headerButtons' onClick={() => history.push('/leaderboard')}>View Leaderboards</button>
+            <div className="headerLogoButtons">
+                <img src={Logo} alt="logo" id='logo' />
+                <button className='headerButtons' onClick={() => history.push("/")}>Home</button>
+                <button className='headerButtons' onClick={() => history.push('/leaderboard')}>View Leaderboards</button>
+            </div>
+
+            <div id="kahnoot">
+                <img id="title" src={Title} />
+            </div>
         </header>
     )
 }
