@@ -1,21 +1,25 @@
 import { HomePage } from '.';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import axios from 'axios';
 jest.mock('axios');
 
-const handleSubmit = (e) => { 
-    let room = e.target.gameID.value;
-    let username = e.target.username.value;
-    dispatch(setRoom(username, room))
-}
 
+
+jest.mock('.', () => ({
+    ...jest.requireActual('.'),
+    handleSubmit: jest.fn().mockReturnValue({
+        room : "room_1",//e.target.gameID.value,
+        username : "Bob"//e.target.username.value
+    }  )
+
+  }))
 
 
 describe('HomePage', () => {
 
     beforeEach(() => {
         renderWithProviders(<HomePage />)
+        jest.resetAllMocks();
     });
 
     test('it renders', () => {
@@ -43,17 +47,17 @@ describe('HomePage', () => {
         expect(form).toBeInTheDocument();
     });
 
-    // test("gets the username from user", () => {
-    //     jest.resetAllMocks();
-    //     axios.get.mockResolvedValue({handleSubmit})
-    //     const username = screen.getByRole('username')
-    //     userEvent.type(username, "Bob{enter}")
-    //     expect(username.value).toBe("Bob");
-    // });
+    test("gets the username from user", () => {
+
+
+        const username = screen.getByRole('username')
+        const join=screen.getByRole("join")
+        userEvent.type(username, "Bob")
+        userEvent.click(join);
+        expect(username.value).toBe("Bob");
+    });
 
     // test("gets the username from user", () => {
-    //     jest.resetAllMocks();
-    //     axios.get.mockResolvedValue({handleSubmit})
     //     const gameID = screen.getByRole('gameID')
     //     userEvent.type(gameID, "room_1{enter}")
     //     expect(gameID.value).toBe("room_1");
