@@ -1,0 +1,8 @@
+.answer {
+    min-height: 200px;
+    /* padding: 20px; */
+    width: 80%;
+    justify-self: center;
+    font-size: 2em;
+    border-radius: 10px;
+}

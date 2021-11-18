@@ -5,8 +5,9 @@ import { useHistory } from "react-router";
 import { socket } from "../../socket";
 import { useSelector, useDispatch } from "react-redux";
 import { storeQuestions, setHost, addPlayers } from "../../actions";
-import { render } from "@testing-library/react";
 import './style.css'
+
+
 
 
 export const Lobby = () => {
@@ -18,16 +19,16 @@ export const Lobby = () => {
     const [hostyBOi, setHostyBOi] = useState(false)
     const room = useSelector(state => state.user.room)
     const players = useSelector(state => state.user.players)
-    console.log(players);
-    console.log(apiData);
+    
     const handleClick = () => {
-        console.log("button pressed");
-        socket.emit("game-start-request", (roomName,res)=>{
+        socket.emit("game-start-request", roomName,(res)=>{
 
+            console.log("button pressed");
         })
     }
 
-    socket.on("game-start", (cb)=>{
+    socket.on("game-start", ()=>{
+        console.log("game started");
         history.push("/quiz")
     })
 
@@ -60,6 +61,7 @@ export const Lobby = () => {
     socket.on("updatedPlayers", (players) => {
         dispatch(addPlayers(players));
     })
+
 
     return (
         <div id="lobbyPage">

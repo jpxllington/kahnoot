@@ -3,4 +3,9 @@
     max-height: 100px;
     /* border: 2px green solid; */
     font-size: 2em;
+    /* margin-left: 10px; */
+}
+
+.host {
+    color: red;
 }
