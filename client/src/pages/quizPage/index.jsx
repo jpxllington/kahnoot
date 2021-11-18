@@ -15,7 +15,7 @@ export const QuizPage = () => {
     const players = useSelector(state => state.user.players);
     let currentQ = useSelector(state => state.quiz.currentQ);
     const apiData = useSelector(state => state.quiz.apiData);
-
+    const roomName = useSelector(state => state.quiz.roomName)
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -24,6 +24,13 @@ export const QuizPage = () => {
     const authenticate = (chosenAnswer) => {
         dispatch(setCurrent(chosenAnswer));
     }
+
+
+    useEffect(()=>{
+        if(!roomName){
+            history.push("/")
+        }
+    },[])
 
     function shuffle(array) {
         let currentIndex = array.length, randomIndex;
