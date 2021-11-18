@@ -60,7 +60,7 @@ export const Leaderboard = () => {
     }
 
     return (
-        <div className="pageSection">
+        <div className="pageSection" id='leaderboardContents'>
             <div>
                 <h2>Leaderboard</h2>
             </div>

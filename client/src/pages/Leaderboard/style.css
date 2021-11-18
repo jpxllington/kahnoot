@@ -1,10 +1,18 @@
+#leaderboardContents {
+    display: flex;
+    flex-direction: column;
+}
+
 h2{
     text-align: center;
     margin: 0px;
 }
 
 #scores{
-    text-align: center;
+    /* text-align: center; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 label{
@@ -13,9 +21,11 @@ label{
 
 .table{
     margin-top: 40px;
-    margin-left: 25%;
+    /* margin-left: 10%; */
     border-collapse: separate;
     border-spacing: 150px 0;
+    border: 1px solid black;
+    
 }
 
 /* th{
@@ -24,7 +34,16 @@ label{
 
 td {
     padding: 10px 0;
+    border: 1px solid black;
+    text-align: center;
+    
   }
+thead {
+    border: 1px solid black;
+}  
+tbody {
+    border: 1px solid black;
+}
 
 
 
