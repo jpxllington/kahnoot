@@ -9,8 +9,10 @@ describe('Results', () => {
   });
 
   test('it renders', () => {
-    const text = screen.getByRole('p')
-    expect(text.textContent).toContain('You scored')
+    const playerScores = screen.getByRole('playerScores');
+    const userAnswers = screen.getByRole('userAnswers');
+    expect(playerScores).toBeInTheDocument();
+    expect(userAnswers).toBeInTheDocument();
 
   });
 

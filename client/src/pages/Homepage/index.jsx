@@ -71,7 +71,8 @@ export const HomePage = () => {
         <>
             <h1>Kahnoot</h1>
 
-            <form onSubmit={(e) => handleSubmit(e)}>
+
+            <form role="form" onSubmit={(e) => handleSubmit(e)}>
                 <input
                     type="text" role="username"
                     name="username" id="username" required

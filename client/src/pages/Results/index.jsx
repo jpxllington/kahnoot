@@ -77,7 +77,7 @@ export const Results = () => {
 
     return (
         <div className="results-tables">
-            <table className="results-table" id="playerScores">
+            <table className="results-table" id="playerScores" role="playerScores">
                 <thead>
                     <tr>
                         <th>Player</th>
@@ -88,7 +88,7 @@ export const Results = () => {
                     {renderPlayers()}
                 </tbody>
             </table>
-            <table className="results-table" id="userAnswers">
+            <table className="results-table" id="userAnswers" role="userAnswers">
                 <thead>
                     <tr>
                         <th>Question</th>
