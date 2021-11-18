@@ -44,7 +44,7 @@ io.on("connection", socket => {
     })
 
     socket.on("disconnect", () => {
-
+        
         let resp = game.deletePlayer(socketID);
         if (resp.updatedPlayers && resp.roomName) {
             let { updatedPlayers, roomName } = resp;

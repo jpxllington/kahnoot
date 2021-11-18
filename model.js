@@ -67,17 +67,25 @@ class Game{
         return this.games
     }
 
-    deletePlayer(roomName,username){
-        let room = this.getRoom(roomName)
-        if(room){
-            playerIndex = room.players.findIndex(player => player.username === username)
-            room.players.splice(playerIndex, 1)
-            return room.players.length
-        }else{
-            return
-        }
-    }
+    deletePlayer(socketID) {
+        for (let i = 0; i < this.games.length; i++) {
+            try {
+                let playerIndex = this.games[i].players.findIndex(player => player.socketID === socketID)
+                if (playerIndex > -1) {
+                    this.games[i].players.splice(playerIndex, 1);
+                    let roomName = this.games[i].room;
+                    return { updatedPlayers: this.games[i].players, roomName: roomName }
+                }
 
+            } catch (e) {
+                console.warn(e);
+            }
+        }
+        // If this point has been reached then it has not found a player
+        console.log("hey");
+        return { message: "No players found with that ID" };
+    }
+    
     addData(apiData,roomName){
         console.log(roomName);
         let room = this.getRoom(roomName);
