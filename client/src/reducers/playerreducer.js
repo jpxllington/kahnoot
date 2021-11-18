@@ -10,8 +10,7 @@ export const playerReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 players: action.payload.player,
-                room: action.payload.room
-                
+                room: action.payload.room               
             };
         case "SET_ERROR":
             return { ...state, error: action.payload };

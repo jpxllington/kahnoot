@@ -10,7 +10,5 @@ describe('Footer', () => {
         render(<Footer />)
         const footer = screen.getByRole('footer')
         expect(footer.textContent).toContain('Calum, Cameron, Golnar, James, Olu © 2021')
-        // const heading = screen.getByText('Leaderboard')
-        // expect(heading.textContent).toContain('Leaderboard');
     });
 })

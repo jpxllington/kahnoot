@@ -63,7 +63,6 @@ export const QuizPage = () => {
 
     return (
         <>
-            {/* <PlayerList/> */}
             <Question question={question} />
             <Quiz answers={answers} authenticate={authenticate} timerDone={timerDone} />
         </>
