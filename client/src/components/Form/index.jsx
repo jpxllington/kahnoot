@@ -61,7 +61,7 @@ export const CreateForm = () => {
                 <option data-testid="select-difficulty-option" value='hard'>Hard</option>
             </select>
             <input role="set_nuumber" type="number" id="amount" name="amount" min="5" max="25" value={amount} onChange={(e) => setAmount(e.target.value)} />
-            <input type='submit' value="Generate Quiz" />
+            <input role="quiz" type='submit' value="Generate Quiz" />
 
         </form>
     )

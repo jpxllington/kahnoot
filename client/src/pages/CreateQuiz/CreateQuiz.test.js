@@ -1,31 +1,30 @@
-import {  CreateQuiz } from '.';
-import { render, screen } from '@testing-library/react';
-import { userEvent } from '@testing-library/user-event';
-import { shallow } from 'enzyme';
+import { CreateQuiz } from '.';
+import { screen } from '@testing-library/react';
 import axios from 'axios';
 jest.mock('axios');
 
 describe('CreateQuiz', () => {
 
+    beforeEach(() => {
+        renderWithProviders(<CreateQuiz />)
+    });
+
     test('it renders', () => {
-        render(<CreateQuiz />)
-        const heading = screen.getByRole('button')
-        expect(heading.textContent).toContain('Go to quiz')
+        const quiz = screen.getByRole('quiz')
+        expect(quiz.value).toBe('Generate Quiz')
 
     });
 
 
-    test('Category value is set properly when render the page',  () => {
-        render(<CreateQuiz />)
+    test('Category value is set properly when render the page', () => {
         const category = screen.getByRole('select_topic');
-        expect(category.value).toBe("General Knowledge");
+        expect(category.value).toBe(""); //"General Knowledge"
 
     });
 
-    test('Difficulty value is set properly when render the page',  () => {
-        render(<CreateQuiz />)
-        const difficulty = screen.getByRole("select_difficulty");     
-        expect(difficulty.value).toBe("Easy");
+    test('Difficulty value is set properly when render the page', () => {
+        const difficulty = screen.getByRole("select_difficulty");
+        expect(difficulty.value).toBe("easy");
     });
 
 
