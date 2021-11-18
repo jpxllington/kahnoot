@@ -1,4 +1,4 @@
-const server = require("http").createServer();const server = require("http").createServer();
+const server = require("http").createServer();
 const Game = require("./model")
 
 const io = require("socket.io")(server, {
