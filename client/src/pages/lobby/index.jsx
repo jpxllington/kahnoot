@@ -6,7 +6,7 @@ import { socket } from "../../socket";
 import { useSelector, useDispatch } from "react-redux";
 import { storeQuestions, setHost, addPlayers } from "../../actions";
 import { render } from "@testing-library/react";
-
+import './style.css'
 
 
 export const Lobby = () => {
@@ -62,9 +62,14 @@ export const Lobby = () => {
     })
 
     return (
-        <>
-            {!!players && players.map((player) => <PlayerCard key={players.indexOf(player)} username={player.username} />)}
-            { hostyBOi ? <button onClick={handleClick}>Go to quiz</button> : <p>Waiting for host to start quiz</p>}
-        </>
+        <div id="lobbyPage">
+            <div className="lobbyContents">
+                <div id="playerList">
+                    {!!players && players.map((player) => <PlayerCard key={players.indexOf(player)} username={player.username} />)}
+                </div>
+                { hostyBOi ? <button id='g2quiz' onClick={handleClick}>Go to quiz</button> : <p>Waiting for host to start quiz</p>}
+
+            </div>
+        </div>
     )
 }

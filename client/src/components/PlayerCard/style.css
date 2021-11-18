@@ -1,5 +1,6 @@
 .card {
-    min-width: 100px;
-    min-height: 100px;
-    border: 2px green solid;
+    max-width: 80%;
+    max-height: 100px;
+    /* border: 2px green solid; */
+    font-size: 2em;
 }
