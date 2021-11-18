@@ -22,7 +22,7 @@ export const Results = () => {
     
     useEffect(() => {
         socket.emit("sendScore", score, roomName, username)
-    })
+    },[])
 
     socket.on("shareScore", (players) => {
         console.log(players);
