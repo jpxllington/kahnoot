@@ -5,8 +5,6 @@ import { useHistory } from "react-router";
 import { socket } from "../../socket";
 import { useSelector, useDispatch } from "react-redux";
 import { storeQuestions, setHost, addPlayers } from "../../actions";
-import { render } from "@testing-library/react";
-
 
 
 export const Lobby = () => {
@@ -54,8 +52,8 @@ export const Lobby = () => {
 
     return (
         <>
-            {players.map((player) => <PlayerCard key={players.indexOf(player)} player={player} />)}
-            { hostyBOi ? <button onClick={handleClick}>Go to quiz</button> : <p>Waiting for host to start quiz</p>}
+            {players.map((player) => <PlayerCard role="playerCard" key={players.indexOf(player)} player={player} />)}
+            { hostyBOi ? <button role="quiz" onClick={handleClick}>Go to quiz</button> : <p role="quiz">Waiting for host to start quiz</p>}
         </>
     )
 }

@@ -7,7 +7,7 @@ export const PlayerCard = ({username}) => {
 
 
     return (
-        <div className="card">
+        <div role="username" className="card">
             {username}
         </div>
     )
