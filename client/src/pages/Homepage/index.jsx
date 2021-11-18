@@ -4,6 +4,7 @@ import { socket } from '../../socket';
 import { useDispatch } from "react-redux"
 import { setRoom } from "../../actions";
 import './style.css'
+import Title from '../../../assets/kahnootLogoColored_transparent.png';
 
 export const HomePage = () => {
     let history = useHistory();
@@ -50,9 +51,9 @@ export const HomePage = () => {
     }
 
     return (
-        <>
+        <div id="homepage">
             <div id="kahnoot">
-                <h1>Kahnoot</h1>
+                <img id="title" src={Title} />
             </div>
 
             <form onSubmit={(e) => handleSubmit(e)}>
@@ -62,7 +63,7 @@ export const HomePage = () => {
                 <input type="submit" role="create" value="Create Game" />
             </form>
             <p className="errorMessage">{message}</p>
-        </>
+        </div>
 
     )
 }
