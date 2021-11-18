@@ -34,6 +34,7 @@ export const storeQuestions = (apiData) => ({ type: "STORE_QUESTIONS", payload: 
 
 // Dev
 // export const db_URL = "http://localhost/";
-export const socket_URL = "http://localhost/1234"
+// export const socket_URL = "http://localhost/1234"
 // Deploy
 export const db_URL = "https://kahnoot-database.herokuapp.com";
+export const socket_URL = "https://kahnoot-socket-server.herokuapp.com/"
