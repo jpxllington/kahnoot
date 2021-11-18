@@ -1,25 +1,12 @@
 import { HomePage } from '.';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-jest.mock('axios');
-
-
-
-jest.mock('.', () => ({
-    ...jest.requireActual('.'),
-    handleSubmit: jest.fn().mockReturnValue({
-        room : "room_1",//e.target.gameID.value,
-        username : "Bob"//e.target.username.value
-    }  )
-
-  }))
 
 
 describe('HomePage', () => {
 
     beforeEach(() => {
         renderWithProviders(<HomePage />)
-        jest.resetAllMocks();
     });
 
     test('it renders', () => {
@@ -48,19 +35,20 @@ describe('HomePage', () => {
     });
 
     test("gets the username from user", () => {
-
-
+        const gameID = screen.getByRole('gameID')
         const username = screen.getByRole('username')
         const join=screen.getByRole("join")
-        userEvent.type(username, "Bob")
+        userEvent.type(gameID, "room_1{enter}")
+        expect(gameID.value).toBe("room_1");
+        userEvent.type(username, "Bob{enter}")
         userEvent.click(join);
         expect(username.value).toBe("Bob");
     });
 
-    // test("gets the username from user", () => {
-    //     const gameID = screen.getByRole('gameID')
-    //     userEvent.type(gameID, "room_1{enter}")
-    //     expect(gameID.value).toBe("room_1");
-    // });
+    test("gets the username from user", () => {
+        const gameID = screen.getByRole('gameID')
+        userEvent.type(gameID, "room_1{enter}")
+        expect(gameID.value).toBe("room_1");
+    });
 
 });

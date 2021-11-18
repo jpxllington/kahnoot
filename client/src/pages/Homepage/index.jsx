@@ -51,7 +51,7 @@ export const HomePage = () => {
         <>
             <h1>Kahnoot</h1>
 
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form role="form" onSubmit={(e) => handleSubmit(e)}>
                 <input type="text" role="username" name="username" id="username" required className="username" placeholder="Enter a username" />
                 <input type='text' role="gameID" name='gameID' id='gameID' required className="gameID" placeholder="Enter a game ID" />
                 <input onClick={(e) => setSubmitter(e.target.value)} type="submit" role="join" value="Join Game" />
