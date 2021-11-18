@@ -27,7 +27,7 @@ class Leaderboard {
             try {
                 let leaderData = await db.query(`SELECT * FROM leaderboard WHERE LOWER(name) = LOWER($1);`, [name]);
                 if (leaderData.rows.length === 0) throw new Error(`No user with the name ${name}.`)
-                resolve(leaderData);
+                resolve(leaderData.rows);
             } catch (err) {
                 reject('Entry not found');
             }
