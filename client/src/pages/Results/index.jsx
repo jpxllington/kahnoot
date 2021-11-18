@@ -23,6 +23,7 @@ export const Results = () => {
     })
 
     socket.on("shareScore", (players) => {
+        console.log(players);
         dispatch(addPlayers(players))
     })
 
