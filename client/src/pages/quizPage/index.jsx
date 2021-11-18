@@ -19,6 +19,8 @@ export const QuizPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();
 
+    console.log("you reached quiz");
+
     const authenticate = (chosenAnswer) => {
         dispatch(setCurrent(chosenAnswer));
     }

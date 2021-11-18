@@ -16,8 +16,7 @@ export const Lobby = () => {
     const [hostyBOi, setHostyBOi] = useState(false)
     const room = useSelector(state => state.user.room)
     const players = useSelector(state => state.user.players)
-    console.log(players);
-    console.log(apiData);
+    
     const handleClick = () => {
         socket.emit("game-start-request", roomName,(res)=>{
 
