@@ -117,6 +117,11 @@ io.on("connection", socket => {
         console.log(roomName);
         io.in(roomName).emit("game-start")
     })
+
+    socket.on("sendScore", (score, roomName,username, cb) => {
+        let updatedPlayers = game.addPlayerScore(score, roomName, username)
+        io.to(roomName).emit("shareScore", updatedPlayers)
+    })
 })
 
 

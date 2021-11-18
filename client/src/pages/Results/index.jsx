@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import he from 'he';
 import './style.css'
+import { socket } from '../../socket';
+import { addPlayers } from "../../actions"
 
 export const Results = () => {
     // Get correct answers of quiz
@@ -11,6 +13,18 @@ export const Results = () => {
     const finalAnswers = useSelector(state => state.quiz.finalAnswers);
     // Get all player usernames, scores
     const players = useSelector(state => state.user.players);
+
+    const score = useSelector(state => state.quiz.score);
+    const roomName = useSelector(state => state.quiz.roomName);
+    const username = useSelector(state => state.quiz.username);
+    
+    useEffect(() => {
+        socket.emit("sendScore", score, roomName, username)
+    })
+
+    socket.on("shareScore", (players) => {
+        dispatch(addPlayers(players))
+    })
 
     const renderPlayers = () => players.map((p, i) => {
         return (
