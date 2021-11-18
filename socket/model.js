@@ -27,7 +27,9 @@ class Game{
         console.log(player);
         try{
             let game = this.getRoom(roomName);
-            game.players.push(player)
+            if(!!game){
+                game.players.push(player)
+            }
         } catch(err){
             console.warn(err);
         }

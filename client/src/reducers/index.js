@@ -1,1 +1,3 @@
-export { quizReducer } from './quizReducer'
+export { quizReducer } from './quizreducer'
+export { playerReducer } from './playerreducer'
+

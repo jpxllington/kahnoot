@@ -16,8 +16,8 @@ export const CreateForm = () => {
     const [categoryList, setCategoryList] = useState([])
     let history = useHistory();
     const dispatch = useDispatch();
-    let username = useSelector(state=>state.username)
-    let roomName = useSelector(state=>state.roomName)
+    let username = useSelector(state=>state.quiz.username)
+    let roomName = useSelector(state=>state.quiz.roomName)
 
     const handleGenQuiz = async (e) => {
         e.preventDefault();

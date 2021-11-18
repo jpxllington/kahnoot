@@ -26,12 +26,17 @@ io.on("connection", socket => {
         game.addPlayer(username, roomName);
         socket.join(roomName);
         // socket.emit(`${username} has joined`)
-        let currentGame = game.getRoom(roomName);
-        console.log(currentGame);
-        cb({
-            players: currentGame.players,
-            host: currentGame.host
-        })
+        try{
+            let currentGame = game.getRoom(roomName);
+            console.log(currentGame);
+            cb({
+                players: currentGame.players,
+                host: currentGame.host
+            })
+
+        } catch(e){
+            console.warn(e);
+        }
         
     })
 
@@ -72,6 +77,7 @@ io.on("connection", socket => {
     socket.on("check-room", (roomName,cb)=>{
         let room = game.checkRoom(roomName)
         console.log(room); 
+        console.log(game);
         cb({
             roomExists:room
         })
@@ -91,6 +97,12 @@ io.on("connection", socket => {
         cb({
             apiData: gamedata.apiData
         })
+    })
+
+    socket.on("game-start-request", (roomName, cb) =>{
+        console.log("youre getting here");
+        socket.broadcast.emit("game-start")
+        socket.emit("game-start")
     })
 })
 
