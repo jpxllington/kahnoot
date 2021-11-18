@@ -62,29 +62,26 @@ export const Leaderboard = () => {
     return (
         <div className="pageSection" id='leaderboardContents'>
             <div>
-                <h2>Leaderboard</h2>
+                <h1>Leaderboard</h1>
             </div>
+            
+            
+            <div className="custom-select">
+                <select data-testid="select-topic" name="testTopic" id="testTopic" role="selectCategory" value={topic} onChange={(e) => setTopic(e.target.value)}>
+                    <option key={0} >Topic</option>
+                    {categories.map((d, i) => <option data-testid="select-topic-option" key={i} > {d} </option>)}
+                </select>
 
-            <form id="scores" role="form">
-                <div className="custom-select">
-                    <label htmlFor="testTopic">Category</label>
-                    <label htmlFor="difficulty">Difficulty</label>
-                    <br></br>
-                    <select data-testid="select-topic" name="testTopic" id="testTopic" role="selectCategory" value={topic} onChange={(e) => setTopic(e.target.value)}>
-                        <option key={0} >Topic</option>
-                        {categories.map((d, i) => <option data-testid="select-topic-option" key={i} > {d} </option>)}
-                    </select>
+                <select data-testid="select-difficulty" name="difficulty" id="difficulty" role="selectDifficulty" onChange={(e) => setDifficulty(e.target.value)}>
+                    <option data-testid="select-difficulty-option" value='difficulty'>Difficulty</option>
+                    <option data-testid="select-difficulty-option" value='easy'>Easy</option>
+                    <option data-testid="select-difficulty-option" value='medium'>Medium</option>
+                    <option data-testid="select-difficulty-option" value='hard'>Hard</option>
+                    {/* {deficultis.map((x, i) => <option data-testid="select-difficulty-option" key={i}> {x} </option>)}) */}
 
-                    <select data-testid="select-difficulty" name="difficulty" id="difficulty" role="selectDifficulty" onChange={(e) => setDifficulty(e.target.value)}>
-                        <option data-testid="select-difficulty-option" value='difficulty'>Difficulty</option>
-                        <option data-testid="select-difficulty-option" value='easy'>Easy</option>
-                        <option data-testid="select-difficulty-option" value='medium'>Medium</option>
-                        <option data-testid="select-difficulty-option" value='hard'>Hard</option>
-                        {/* {deficultis.map((x, i) => <option data-testid="select-difficulty-option" key={i}> {x} </option>)}) */}
-
-                    </select>
-                </div>
-            </form>
+                </select>
+            </div>
+            
 
             <table id="rankings" className="table" role="display-scores">
                 <thead>
@@ -108,5 +105,9 @@ export const Leaderboard = () => {
     )
 
 }
+                    
+                        
+
+                    
 
 

@@ -6,6 +6,7 @@
     /* background-color: blue; */
 }
 .pageSection {
+    width: 100%;
     background-color: skyblue;
     min-height: 80vh;
 }
