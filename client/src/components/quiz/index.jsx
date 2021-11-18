@@ -10,14 +10,22 @@ export const Quiz = ({ answers, authenticate, timerDone }) => {
         e.preventDefault()
         console.log(e.target.textContent);
         setChosenAnswer(e.target.textContent);
+        let buttons = document.querySelectorAll(".answerButton")
+        buttons.forEach((button) => {button.setAttribute("class","answerButton")})
+        e.target.className = "answerButton active";
     }
+
+    useEffect(()=>{
+        let buttons = document.querySelectorAll(".answerButton")
+        buttons.forEach((button) => {button.setAttribute("class","answerButton")})
+    },[answers])
 
     useEffect(async () => {
         await authenticate(chosenAnswer);
     }, [chosenAnswer])
 
     const renderAnswers = () => {
-        return answers.map((a, i) => <AnswerButton key={i} handleAnswer={handleAnswer} text={a.answer} />)
+        return answers.map((a, i) => <AnswerButton className={"answerButton"} key={i} handleAnswer={handleAnswer} text={a.answer} />)
     }
     return (
         <div id='quizPage'>
