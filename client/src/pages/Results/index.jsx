@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import he from 'he';
 import './style.css'
 import { socket } from '../../socket';
 import { addPlayers } from "../../actions"
 
+
 export const Results = () => {
+    let dispatch = useDispatch();
     // Get correct answers of quiz
     const apiData = useSelector(state => state.quiz.apiData);
     const correctAnswers = apiData.map(a => he.decode(a.correct_answer));
