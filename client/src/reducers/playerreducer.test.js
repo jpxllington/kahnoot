@@ -12,9 +12,9 @@ describe('playerReducer', () => {
     it('update players and room on ADD_PLAYER', () => {
         const fakeRoom = playerReducer(
             {room:'',players:[] },
-            { type: 'ADD_PLAYER', payload: [{room:1,player:'Jim'}]})
+            { type: 'ADD_PLAYER', payload: {room:1,player:'Jim'}})
 
-        expect(fakeRoom).toMatchObject({ room: 1})
+        expect(fakeRoom).toMatchObject({players:'Jim', room: 1})
     })
     
 
@@ -31,7 +31,7 @@ describe('playerReducer', () => {
             {players:[] },
             { type: 'SET_PLAYER', payload: 'Bob'})
 
-        expect(fakePlayer).toMatchObject({ players: ['Bob']})
+        expect(fakePlayer).toMatchObject({ players: 'Bob'})
     })
 
 })
