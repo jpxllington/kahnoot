@@ -70,6 +70,7 @@ export const QuizPage = () => {
     return (
         <>
             {!!players && players.map((player) => <PlayerCard key={players.indexOf(player)} username={player.username} />)}
+
             <Question question={question} />
             <Quiz answers={answers} authenticate={authenticate} timerDone={timerDone} />
         </>

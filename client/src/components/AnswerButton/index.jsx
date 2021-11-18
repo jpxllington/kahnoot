@@ -4,7 +4,7 @@ export const AnswerButton = ({ text, handleAnswer }) => {
 
     return (
         <>
-            <button onClick={(e) => handleAnswer(e)}>
+            <button role="answerButton" onClick={(e) => handleAnswer(e)}>
                 {text}
             </button>
         </>
