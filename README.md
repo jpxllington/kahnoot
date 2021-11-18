@@ -9,6 +9,7 @@ KAHNOOT Is our LAP 3 Group Project for appreciation-appreciation-society. It is 
 - Host will then start the quiz game for everyone in the lobby
 - Players will answer the same set of questions at the same time, with a timer ticking down until the next question
 - When the quiz ends players are taken to a results page where they see the lobby scores along with their own answers / the correct answers to see what they got right/wrong.
+- Users can also access a global leaderboards page to view all the scores stored in the database
 
 ## Technologies
 
