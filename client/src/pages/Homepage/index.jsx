@@ -29,7 +29,10 @@ export const HomePage = () => {
             socket.emit("check-room", room, (res) => {
                 console.log(res);
                 if (res.roomExists) {
-                    history.push('/lobby')
+                    setMessage("Joining Game...")
+                    setTimeout(() => {
+                        history.push('/lobby')
+                    }, 2000);
                 } else {
                     setMessage("This room doesn't exist")
                     setTimeout(() => {
@@ -48,7 +51,10 @@ export const HomePage = () => {
                         setMessage("")
                     }, 2000);
                 } else {
-                    history.push("/create")
+                    setMessage("Creating Room...");
+                    setTimeout(() => {
+                        history.push("/create")
+                    }, 2000)
                 }
             })
 
