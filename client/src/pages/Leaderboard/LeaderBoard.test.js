@@ -44,7 +44,7 @@ describe('Leaderboard', () => {
         const difficulty = screen.getByRole("selectDifficulty");
 
         await waitFor(() => {
-            expect(difficulty.value).toBe("Difficulty");
+            expect(difficulty.value).toBe("difficulty");
             expect(category.value).toBe("Topic");
             expect(tableInfo.textContent).toContain('Username');
         });
@@ -105,8 +105,9 @@ describe('Leaderboard part 2', () => {
         let options = getAllByTestId('select-difficulty-option')
         await waitFor(() => {
             expect(options[0].selected).toBeFalsy();
-            expect(options[1].selected).toBeTruthy();
-            expect(options[2].selected).toBeFalsy();
+            expect(options[1].selected).toBeFalsy();
+            expect(options[2].selected).toBeTruthy();
+            expect(options[3].selected).toBeFalsy();
         })
 
     })
