@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { render, fireEvent } from '@testing-library/react';
+import { db_URL } from '../../actions';
 import axios from 'axios';
 import './style.css';
 
@@ -10,14 +9,30 @@ export const Leaderboard = () => {
     const [scores, setScores] = useState([]);
     const [difficulty, setDifficulty] = useState('');
     const [data, setData] = useState([]);
+    const [categories, setCategories] = useState([])
 
-    const deficultis = ['easy', 'medium', 'hard'];
-    const categories = ['Sports', 'History', 'General Knowledge', 'Entertainment', 'Celeberties', 'Art', 'Politics', 'Geography'];
+    const difficulties = ['easy', 'medium', 'hard'];
+
+    // Get the categories list
+    useEffect(() => {
+        const fetchCategory = async () => {
+            try {
+                const { data } = await axios.get('https://opentdb.com/api_category.php')
+                let newCategoryArray = data.trivia_categories.map((data) => (data.name))
+
+                setCategories(newCategoryArray)
+
+            } catch (err) {
+                console.warn(err)
+            }
+        }
+        fetchCategory();
+    }, [])
 
     // use this to fetch the data from storage
     useEffect(async () => {
         try {
-            const fetchData = await axios.get('http://localhost:3000/leaderboard'); //fetch the players data
+            const fetchData = await axios.get(`${db_URL}/leaderboard`); //fetch the players data
             setData(fetchData.data);
         } catch (error) {
             console.warn(error.message);
@@ -52,10 +67,10 @@ export const Leaderboard = () => {
 
             <form id="scores" role="form">
                 <div className="custom-select">
-                    <label htmlFor="testTopic">Test topic</label>
-                    <label htmlFor="difficulty">Difficaulty</label>
+                    <label htmlFor="testTopic">Category</label>
+                    <label htmlFor="difficulty">Difficulty</label>
                     <br></br>
-                    <select data-testid="select-topic" name="testTopic" id="testTopic" role="selectCategory" onChange={(e) => setTopic(e.target.value)}>
+                    <select data-testid="select-topic" name="testTopic" id="testTopic" role="selectCategory" value={topic} onChange={(e) => setTopic(e.target.value)}>
                         <option key={0} >Topic</option>
                         {categories.map((d, i) => <option data-testid="select-topic-option" key={i} > {d} </option>)}
                     </select>
@@ -66,6 +81,7 @@ export const Leaderboard = () => {
                         <option data-testid="select-difficulty-option" value='medium'>Medium</option>
                         <option data-testid="select-difficulty-option" value='hard'>Hard</option>
                         {/* {deficultis.map((x, i) => <option data-testid="select-difficulty-option" key={i}> {x} </option>)}) */}
+
                     </select>
                 </div>
             </form>
