@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
+import { PlayerCard } from "../../components/PlayerCard"
 import { Quiz } from "../../components";
 import { Question } from "../../components";
 import { useHistory } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeQ, endQuiz, setCorrect, setCurrent } from '../../actions';
 import he from 'he';
+import {socket} from "../../socket"
 
 export const QuizPage = () => {
 
-    const [answers, setAnswers] = useState([])
-    const [question, setQuestion] = useState("")
-
+    const [answers, setAnswers] = useState([]);
+    const [question, setQuestion] = useState("");
+    const players = useSelector(state => state.user.players);
     let currentQ = useSelector(state => state.quiz.currentQ);
     const apiData = useSelector(state => state.quiz.apiData);
 
@@ -61,8 +63,14 @@ export const QuizPage = () => {
         recievesQuestionData(apiData[currentQ])
     }, [currentQ])
 
+    socket.on("updatedPlayers", (players) => {
+        dispatch(addPlayers(players));
+    })
+
     return (
         <>
+            {!!players && players.map((player) => <PlayerCard key={players.indexOf(player)} username={player.username} />)}
+
             <Question question={question} />
             <Quiz answers={answers} authenticate={authenticate} timerDone={timerDone} />
         </>

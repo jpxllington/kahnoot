@@ -16,44 +16,55 @@ export const Lobby = () => {
     const [hostyBOi, setHostyBOi] = useState(false)
     const room = useSelector(state => state.user.room)
     const players = useSelector(state => state.user.players)
-
+    console.log(players);
     console.log(apiData);
     const handleClick = () => {
-        console.log("button pressed");
-        socket.emit("game-start-request", (res)=>{
+        socket.emit("game-start-request", roomName,(res)=>{
 
+            console.log("button pressed");
         })
     }
 
-    socket.on("game-start", (cb)=>{
+    socket.on("game-start", ()=>{
+        console.log("game started");
         history.push("/quiz")
     })
 
     useEffect(() => {
-        socket.emit("joinRoom", username, roomName, (res) => {
-            console.log(res);
-            dispatch(setHost(res.host))
-            dispatch(addPlayers(res.players))
-            if (res.host === username) {
-                socket.emit("sendData", JSON.stringify(apiData), roomName, (res) => { })
-                setHostyBOi(true)
-            } else {
-                socket.emit("gameData", roomName, (res) => {
+        if (!roomName){
+            history.push("/")
+        } else{
+            socket.emit("joinRoom", username, roomName, (res) => {
+                console.log(res);
+                dispatch(setHost(res.host))
+                dispatch(addPlayers(res.players))
+                if (res.host === username) {
+                    socket.emit("sendData", JSON.stringify(apiData), roomName, (res) => { })
+                    setHostyBOi(true)
+                } else {
+                    socket.emit("gameData", roomName, (res) => {
+    
+                        let gameData = JSON.parse(res.apiData);
+                        console.log(gameData);
+                        dispatch(storeQuestions(gameData));
+                    })
+                }
+            })
 
-                    let gameData = JSON.parse(res.apiData);
-                    console.log(gameData);
-                    dispatch(storeQuestions(gameData));
-                })
-            }
-        })
+        }
 
     }, [])
 
+
+    socket.on("updatedPlayers", (players) => {
+        dispatch(addPlayers(players));
+    })
 
     return (
         <>
             {players.map((player) => <PlayerCard role="playerCard" key={players.indexOf(player)} player={player} />)}
             { hostyBOi ? <button role="quiz" onClick={handleClick}>Go to quiz</button> : <p role="quiz">Waiting for host to start quiz</p>}
+
         </>
     )
 }
