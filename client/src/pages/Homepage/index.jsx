@@ -49,12 +49,12 @@ export const HomePage = () => {
                     setMessage("This room already exists")
                     setTimeout(() => {
                         setMessage("")
-                    }, 2000);
+                    }, 1000);
                 } else {
                     setMessage("Creating Room...");
                     setTimeout(() => {
                         history.push("/create")
-                    }, 2000)
+                    }, 1000)
                 }
             })
 
