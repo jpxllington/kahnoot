@@ -3,6 +3,7 @@ import { useHistory } from 'react-router';
 import { socket } from '../../socket';
 import { useDispatch } from "react-redux"
 import { setRoom } from "../../actions";
+import './style.css'
 
 export const HomePage = () => {
     let history = useHistory();
@@ -50,7 +51,10 @@ export const HomePage = () => {
 
     return (
         <>
-            <h1>Kahnoot</h1>
+            <div id="kahnoot">
+                <h1>Kahnoot</h1>
+            </div>
+
             <form onSubmit={(e) => handleSubmit(e)}>
                 <input type="text" name="username" id="username" required className="username" placeholder="Enter a username" />
                 <input type='text' name='gameID' id='gameID' required className="gameID" placeholder="Enter a game ID" />
