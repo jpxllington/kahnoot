@@ -71,8 +71,4 @@ describe('quizReducer', () => {
         expect(fakeError).toMatchObject({error:'Oops, error!'})
     })
 
-    
-
-    
-
 })
