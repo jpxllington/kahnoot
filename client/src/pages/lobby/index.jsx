@@ -65,13 +65,13 @@ export const Lobby = () => {
 
     return (
         <div id="lobbyPage" className='pageSection'>
-            <div className="lobbyContents">
+            {/* <div className="lobbyContents">
+
+            </div> */}
                 <div id="playerList">
                     {!!players && players.map((player) => <PlayerCard key={players.indexOf(player)} username={player.username} />)}
                 </div>
                 { hostyBOi ? <button id='g2quiz' onClick={handleClick}>Go to quiz</button> : <p>Waiting for host to start quiz</p>}
-
-            </div>
         </div>
     )
 }

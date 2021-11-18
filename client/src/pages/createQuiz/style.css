@@ -17,9 +17,11 @@
 }
 
 #quizParameters > * {
-    
+    border-radius: 10px;
     height: 80px;
     width: 500px;
     font-size: 2em;
+    padding-left: 10px;
+    text-align: center;
 } 
 

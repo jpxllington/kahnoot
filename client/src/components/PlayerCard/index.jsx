@@ -9,7 +9,7 @@ export const PlayerCard = ({username}) => {
 
     return (
         <div role="username" className={host === username ? 'host card' : 'card' }>
-            {username}
+            <p className='playerName'>{username}</p>
         </div>
     )
 }
