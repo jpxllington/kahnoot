@@ -64,7 +64,7 @@ export const Lobby = () => {
 
 
     return (
-        <div id="lobbyPage">
+        <div id="lobbyPage" className='pageSection'>
             <div className="lobbyContents">
                 <div id="playerList">
                     {!!players && players.map((player) => <PlayerCard key={players.indexOf(player)} username={player.username} />)}

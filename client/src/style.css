@@ -3,4 +3,9 @@
 
 * {
     font-family: 'Shippori Antique B1', sans-serif;
+    /* background-color: blue; */
+}
+.pageSection {
+    background-color: skyblue;
+    min-height: 80vh;
 }

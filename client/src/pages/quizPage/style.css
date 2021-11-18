@@ -1,3 +1,7 @@
+#actualQuizPage {
+    background-color: skyblue;
+    border: 1px solid black;
+}
 #usernameContainer {
     display: flex;
     flex-direction: row;

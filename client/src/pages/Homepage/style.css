@@ -7,7 +7,7 @@
 
 #homepage {
     margin: 0;
-    height: 100%;
+    min-height: 80vh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -32,16 +32,17 @@
 #frontPageForm {
     display: flex;
     flex-direction: column;
-    max-width: 100%;
+    min-width: 100%;
+    min-height: 70vh;
     align-items: center;
-    justify-content: center;
-    transform: translateY(-5%);
-    height: 76vh;
+    justify-content: space-around;
+    /* transform: translateY(-5%); */
+    /* height: 76vh; */
     
 }
 
 #frontPageForm > * {
-    margin-top: 40px;
+    /* margin-top: 40px; */
     height: 80px;
     width: 500px;
     font-size: 2em;

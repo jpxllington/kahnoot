@@ -71,7 +71,7 @@ export const HomePage = () => {
 
     return (
 
-        <div id="homepage">
+        <div id="homepage" className="pageSection">
             <form role="form" onSubmit={(e) => handleSubmit(e)} id="frontPageForm">
                 <input
                     type="text" role="username"

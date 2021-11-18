@@ -60,7 +60,7 @@ export const Leaderboard = () => {
     }
 
     return (
-        <>
+        <div className="pageSection">
             <div>
                 <h2>Leaderboard</h2>
             </div>
@@ -104,7 +104,7 @@ export const Leaderboard = () => {
                 </tbody>
             </table>
 
-        </>
+        </div>
     )
 
 }

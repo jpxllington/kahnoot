@@ -83,13 +83,15 @@ export const QuizPage = () => {
    
 
     return (
-        <>
+        <div className="pageSection" id="actualQuizPage">
             <div id='usernameContainer'>
                 {!!players && players.map((player) => <PlayerCard key={players.indexOf(player)} username={player.username} />)}
             </div>
-
-            <Question question={question} />
-            <Quiz answers={answers} authenticate={authenticate} timerDone={timerDone} />
-        </>
+            <div>
+                <Question question={question} />
+                <Quiz answers={answers} authenticate={authenticate} timerDone={timerDone} />
+            </div>
+        </div>
     )
 }
+
