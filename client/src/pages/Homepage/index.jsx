@@ -38,7 +38,7 @@ export const HomePage = () => {
                     setMessage("Joining Game...")
                     setTimeout(() => {
                         history.push('/lobby')
-                    }, 2000);
+                    }, 1000);
                 } else {
                     setMessage("This room doesn't exist")
                     setTimeout(() => {
@@ -60,7 +60,7 @@ export const HomePage = () => {
                     setMessage("Creating Room...");
                     setTimeout(() => {
                         history.push("/create")
-                    }, 2000)
+                    }, 1000)
                 }
             })
 
