@@ -38,6 +38,16 @@ describe('leaders controller', () => {
             expect(mockStatus).toHaveBeenCalledWith(200);
             expect(mockJson).toHaveBeenCalledWith(new Leaderboard(testLeaderboard));
         })
+
+        test('it returns an error with a 404 status code', async () => {
+            jest.spyOn(Leaderboard, 'findByName')
+                .mockRejectedValue('Invalid username');
+                
+            const mockReq = { params: { name: 'Test Name' } }
+            await leaderController.show(mockReq, mockRes);
+            expect(mockStatus).toHaveBeenCalledWith(404);
+            expect(mockJson).toHaveBeenCalledWith({err: 'Invalid username'});
+        });
     });
 
     describe('create', () => {
@@ -55,6 +65,22 @@ describe('leaders controller', () => {
             await leaderController.create(mockReq, mockRes);
             expect(mockStatus).toHaveBeenCalledWith(201);
             expect(mockJson).toHaveBeenCalledWith(new Leaderboard(testLeaderboard));
-        })
+        });
+
+        test('it returns an error with a 422 status code', async () => {
+            let testLeaderboard = {
+                id: 2, name: 'Test Name2', 
+                topic: 'Test topic2',
+                difficulty: 'Medium', 
+                score: 7 
+            }
+            jest.spyOn(Leaderboard, 'create')
+                .mockRejectedValue('Error creating entry');
+                
+            const mockReq = { body: testLeaderboard }
+            await leaderController.create(mockReq, mockRes);
+            expect(mockStatus).toHaveBeenCalledWith(422);
+            expect(mockJson).toHaveBeenCalledWith({err: 'Error creating entry'});
+        });
     });
 })
