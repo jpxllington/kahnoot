@@ -9,11 +9,11 @@
 }
 #answerForm {
     min-height: 100%;
-    margin-top: 50px;
-    width: 80%;
+    margin-top: 40px;
+    width: 70%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 70px;
+    row-gap: 50px;
     justify-content: space-around;
-    margin-left: 10%;
+    margin-left: 15%;
 }
