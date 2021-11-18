@@ -36,7 +36,7 @@ io.on("connection", socket => {
                 host: currentGame.host
             })
 
-            socket.broadcast.emit("updatedPlayers", currentGame.players)
+            io.to(roomName).emit("updatedPlayers", currentGame.players)
 
         } catch (e) {
             console.warn(e);
@@ -53,7 +53,7 @@ io.on("connection", socket => {
             if (!updatedPlayers.length) {
                 game.deleteRoom(roomName)
             }
-            socket.broadcast.emit("updatedPlayers", updatedPlayers)
+            io.to(roomName).emit("updatedPlayers", updatedPlayers)
         } else {
             console.log(resp.message);
         }
@@ -64,10 +64,10 @@ io.on("connection", socket => {
         socket.join(config.host)
     })
 
-    socket.on('game-players', (roomID) => {
-        const gamePlayers = games.getPlayers(roomID)
-        io.in(roomID).emit(gamePlayers);
-    })
+    // socket.on('game-players', (roomID) => {
+    //     const gamePlayers = games.getPlayers(roomID)
+    //     io.in(roomID).emit(gamePlayers);
+    // })
 
     // io.to(roomName).emit('game-players');
 
@@ -112,8 +112,10 @@ io.on("connection", socket => {
 
     socket.on("game-start-request", (roomName, cb) => {
         console.log("youre getting here");
-        socket.broadcast.emit("game-start")
-        socket.emit("game-start")
+        // socket.broadcast.emit("game-start")
+        // socket.emit("game-start")
+        console.log(roomName);
+        io.in(roomName).emit("game-start")
     })
 })
 
