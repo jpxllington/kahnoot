@@ -30,7 +30,7 @@ export const Quiz = ({ answers, authenticate, timerDone }) => {
     return (
         <div id='quizPage'>
             
-            <GameTimer role ="timer" duration={10000000} timerDone={timerDone} />
+            <GameTimer role ="timer" duration={1000} timerDone={timerDone} />
 
             <form role ="answers-form" id='answerForm'>
                 {renderAnswers()}

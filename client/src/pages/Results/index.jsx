@@ -76,30 +76,35 @@ export const Results = () => {
     }
 
     return (
-        <div className="results-tables">
-            <table className="results-table" id="playerScores" role="playerScores">
-                <thead>
-                    <tr>
-                        <th>Player</th>
-                        <th>Score</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {renderPlayers()}
-                </tbody>
-            </table>
-            <table className="results-table" id="userAnswers" role="userAnswers">
-                <thead>
-                    <tr>
-                        <th>Question</th>
-                        <th>Your Answer</th>
-                        <th>Correct Answer</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {renderAnswers()}
-                </tbody>
-            </table>
+        <div className="pageSection" id="results">
+            <div id="results-table1" className='results-table'>
+                <table id="playerScores" role="playerScores">
+                    <thead>
+                        <tr>
+                            <th>Player</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {renderPlayers()}
+                    </tbody>
+                </table>
+            </div>
+            <div id='results-table2' className='results-table'>
+                <table id="userAnswers" role="userAnswers">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Your Answer</th>
+                            <th>Correct Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {renderAnswers()}
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     )
 }

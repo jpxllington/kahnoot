@@ -19,11 +19,6 @@ h1{
     
     align-self: center;
 }
-
-label{
-    /* margin: 40px; */
-}
-
 .table{
     margin-top: 30px;
     /* margin-left: 10%; */
@@ -33,20 +28,12 @@ label{
     font-size: 1.2em;
     
 }
-
 td {
     padding: 10px 0;
     /* border: 1px solid black; */
     text-align: center;
     
   }
-th {
-    /* border: 1px solid black; */
-    /* margin-bottom: 20px; */
-}  
-tbody {
-    /* border: 1px solid black; */
-}
 #testTopic {
     margin-right: 50px;
 }
