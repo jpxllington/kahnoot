@@ -3,6 +3,8 @@ import { useHistory } from 'react-router';
 import { socket } from '../../socket';
 import { useDispatch } from "react-redux"
 import { setRoom } from "../../actions";
+import './style.css'
+import Title from '../../../assets/kahnootLogoColored_transparent.png';
 
 export const HomePage = () => {
     let history = useHistory();
@@ -68,28 +70,29 @@ export const HomePage = () => {
     }
 
     return (
-        <>
-            <h1>Kahnoot</h1>
 
-
-            <form role="form" onSubmit={(e) => handleSubmit(e)}>
+        <div id="homepage" className="pageSection">
+            <form role="form" onSubmit={(e) => handleSubmit(e)} id="frontPageForm">
                 <input
                     type="text" role="username"
                     name="username" id="username" required
                     className="username" placeholder="Enter a username"
                     value={formData.username} onChange={handleInput}
+                    maxLength='20'
                 />
                 <input
                     type='text' role="gameID"
                     name='gameID' id='gameID' required
                     className="gameID" placeholder="Enter a game ID"
                     value={formData.gameID} onChange={handleInput}
+                    maxLength='12'
                 />
                 <input onClick={(e) => setSubmitter(e.target.value)} type="submit" role="join" value="Join Game" />
                 <input onClick={(e) => setSubmitter(e.target.value)} type="submit" role="create" value="Create Game" />
+
             </form>
             <p className="errorMessage">{message}</p>
-        </>
+        </div>
 
     )
 }

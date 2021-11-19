@@ -1,10 +1,11 @@
 import React from 'react';
+import './style.css'
 
 export const AnswerButton = ({ text, handleAnswer }) => {
 
     return (
         <>
-            <button role="answerButton" onClick={(e) => handleAnswer(e)}>
+            <button role="answerButton" onClick={(e) => handleAnswer(e)} className='answerButton'>
                 {text}
             </button>
         </>

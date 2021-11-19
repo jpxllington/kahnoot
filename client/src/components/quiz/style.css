@@ -1,3 +1,45 @@
+
+#quizPage {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    /* align-items: center;
+    justify-content: center; */
+    flex-direction: column;
+}
+#answerForm {
+    min-height: 100%;
+    margin-top: 40px;
+    width: 70%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 50px;
+    justify-content: space-around;
+    margin-left: 15%;
+}
 .active{
-    background-color: blue;
+    background-color: #d8494d;
+    font-size: 2rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border: 1px #d8494d;
+}
+.answerButton {
+    min-height: 150px;
+    /* padding: 20px; */
+    width: 90%;
+    justify-self: center;
+    font-size: 2rem;
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 0 #d8494d;
+    border: 2px #d8494d solid;
+    -webkit-transition: ease-out 0.3s;
+    -moz-transition: ease-out 0.3s;
+    transition: ease-out 0.3s;
+
+}
+
+.answerButton:hover {
+    box-shadow: inset 0 0 0 50px #d8494d;
+    background-color: #d8494d;
 }

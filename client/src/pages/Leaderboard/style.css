@@ -1,29 +1,52 @@
-h2{
+#leaderboardContents {
+    display: flex;
+    flex-direction: column;
+}
+
+h1{
     text-align: center;
+    margin: 0px;
 }
 
-#scores{
-    text-align: center;
+.custom-select{
+    margin-top: 20px;
+    /* text-align: center; */
+    display: flex;
+    flex-direction: row;
+    max-width: 60vw;
+    /* align-items: center; */
+    justify-content: space-around;
+    
+    align-self: center;
 }
-
-label{
-    margin: 40px;
-}
-
 .table{
-    margin-top: 40px;
-    margin-left: 25%;
+    margin-top: 30px;
+    /* margin-left: 10%; */
     border-collapse: separate;
-    border-spacing: 150px 0;
+    border-spacing: 200px 0;
+    /* border: 1px solid black; */
+    font-size: 1.2em;
+    
 }
-
-/* th{
-    background-color: darkgoldenrod;
-} */
-
 td {
     padding: 10px 0;
+    /* border: 1px solid black; */
+    text-align: center;
+    
   }
+#testTopic {
+    margin-right: 50px;
+}
+.custom-select > * {
+    /* margin-top: 40px; */
+    height: 50px;
+    width: 300px;
+    font-size: 1.5em;
+    border-radius: 10px;
+    text-align: center;
+} 
+
+
 
 
 

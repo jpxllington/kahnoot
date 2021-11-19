@@ -1,0 +1,12 @@
+#actualQuizPage {
+    background-color: rgb(144, 180, 194);
+    border: 1px solid black;
+}
+#usernameContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* flex-wrap: wrap; */
+    overflow-x: scroll;
+    width: 100vw;
+}
