@@ -10,3 +10,7 @@
     background-color: skyblue;
     min-height: 80vh;
 }
+
+body {
+    margin: 0;
+}

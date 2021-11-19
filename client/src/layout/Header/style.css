@@ -23,8 +23,8 @@ Header {
 }
 
 #logo {
-    
-    max-height: 110px;
+    height: 15vh;
+    max-height: 140px;
     max-width: 200px;
     padding: 0px;
     
