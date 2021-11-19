@@ -5,7 +5,7 @@ export const AnswerButton = ({ text, handleAnswer }) => {
 
     return (
         <>
-            <button role="answerButton" onClick={(e) => handleAnswer(e)} className='answer'>
+            <button role="answerButton" onClick={(e) => handleAnswer(e)} className='answerButton'>
                 {text}
             </button>
         </>

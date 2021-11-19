@@ -1,7 +1,7 @@
 .countDownTimer{
     height: 2rem;
     transform-origin: left;
-    background: blue;
+    background: #d8494d;
     animation: roundtime calc(var(--duration) * 1s) linear forwards;
     animation-iteration-count: infinite;
     border-radius: 5px;

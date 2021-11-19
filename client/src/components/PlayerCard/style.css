@@ -4,10 +4,11 @@
     /* border: 2px green solid; */
     font-size: 2em;
     /* padding: 5px; */
+
 }
 
 .host {
-    color: red;
+    color: #ff0;
 }
 .playerName {
     margin: 0;
