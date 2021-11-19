@@ -95,6 +95,7 @@ The [client](https://kahnoot.netlify.app/) is deployed on Netlify, and the [sock
 - Lock users out of being able to join an active game
 - Display room name and quiz category, difficulty, number of questions in the lobby to all players
 - Implement max players in lobby
+- Show relative/percentage scores in leaderboards
 
 ## Licence
 
