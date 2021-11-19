@@ -84,6 +84,7 @@ The [client](https://kahnoot.netlify.app/) is deployed on Netlify, and the [sock
 
 ## Bugs
 
+- [] Vertical gap between answer buttons is weird on Safari browser
 - [] Users can currently join an active game, and get placed in a lobby waiting for host to start game
 - [x] Users disconnecting would delete the whole room each time, even if players were still in lobby
 - [x] Users refreshing on homepage would crash the server as it was trying to delete a non-existant user
