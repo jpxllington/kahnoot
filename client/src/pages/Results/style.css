@@ -1,9 +1,34 @@
-.results-tables {
+#results {
+    display: flex;
+}
+/* .results-tables {
     display: flex;
     align-items: baseline;
-}
+    width: 60%;
+    justify-content: center;
+} */
 
-.results-table {
-    margin: 0 20px;
+#results-table1 {
+    position: absolute;
+    margin-top: 20px;
     text-align: center;
+    min-width: 15vw;
+    display: flex;
+    max-height: 10vw;
+    justify-content: center;
+}
+#results-table2 {
+    margin-top: 20px;
+    text-align: center;
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+#userAnswers {
+    
+    min-width: 50%;
+}
+td {
+    padding: 0;
+    max-height: 10px;
 }

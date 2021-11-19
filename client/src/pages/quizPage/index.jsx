@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeQ, endQuiz, setCorrect, setCurrent } from '../../actions';
 import he from 'he';
 import {socket} from "../../socket"
+import './style.css'
 
 export const QuizPage = () => {
 
@@ -82,11 +83,15 @@ export const QuizPage = () => {
    
 
     return (
-        <>
-            {!!players && players.map((player) => <PlayerCard key={players.indexOf(player)} username={player.username} />)}
-
-            <Question question={question} />
-            <Quiz answers={answers} authenticate={authenticate} timerDone={timerDone} />
-        </>
+        <div className="pageSection" id="actualQuizPage">
+            <div id='usernameContainer'>
+                {!!players && players.map((player) => <PlayerCard key={players.indexOf(player)} username={player.username} />)}
+            </div>
+            <div>
+                <Question question={question} />
+                <Quiz answers={answers} authenticate={authenticate} timerDone={timerDone} />
+            </div>
+        </div>
     )
 }
+

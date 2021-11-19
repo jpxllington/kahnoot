@@ -1,0 +1,38 @@
+#lobbyPage {
+    margin: 0;
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+}
+#g2quiz {
+    margin-top: 30px;
+    height: 80px;
+    width: 400px;
+    font-size: 2em;
+    border-radius: 10px;
+    /* justify-self: flex-end; */
+}
+.lobbyContents {
+    min-height: 50vh;
+    width: 80%;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+}
+#playerList {
+    margin-top: 30px;
+    border: 3px solid black;
+    min-width:40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    min-height: 10%;
+    
+}

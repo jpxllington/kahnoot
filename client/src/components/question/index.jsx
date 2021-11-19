@@ -1,7 +1,8 @@
 import React from 'react';
+import './style.css'
 
 export const Question = ({ question }) => {
     return (
-        <p role="question">{question}</p>
+        <p className='question' role="question">{question}</p>
     )
 }

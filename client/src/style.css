@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Shippori+Antique+B1&display=swap');
+
+* {
+    font-family: 'Shippori Antique B1', sans-serif;
+    /* background-color: blue; */
+}
+.pageSection {
+    width: 100%;
+    background-color: skyblue;
+    min-height: 80vh;
+}

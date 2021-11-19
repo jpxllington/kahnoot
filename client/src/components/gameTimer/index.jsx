@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css"
+
 export const GameTimer = ({ duration, timerDone }) => {
     const [currentTimer, setCurrentTimer] = useState(0)
 
